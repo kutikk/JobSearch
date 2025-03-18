@@ -20,8 +20,10 @@ public class Users {
     private String account_type;
     private Integer resumesID;
 
+    public Users() {
+    }
 
-    public Users( Integer id,String name, String email, String password, String phone_number,
+    public Users(Integer id, String name, String email, String password, String phone_number,
                  String avatar, Integer age, String account_type, Integer resumesID) {
         this.id = id;
         this.name = name;
