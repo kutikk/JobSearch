@@ -1,9 +1,11 @@
 package kg.attractor.jobsearch.controller;
 
 
+import kg.attractor.jobsearch.dto.EmployerDto;
 import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Users;
 import kg.attractor.jobsearch.models.Vacancies;
+import kg.attractor.jobsearch.service.EmployerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employers")
+@RequiredArgsConstructor
 public class EmployerController {
+
+
+
+
+    private final EmployerService employerService;
+
+    @GetMapping
+    public List<EmployerDto> getEmployers() {
+        return employerService.getEmployers();
+    }
+    @GetMapping("/name/{name}")
+    public EmployerDto getEmployerByName(@PathVariable String name) {
+        return employerService.getEmployerByName(name);
+    }
+
+    @GetMapping("/phone/{phoneNumber}")
+    public EmployerDto getEmployerByPhone(@PathVariable String phoneNumber) {
+        return employerService.getEmployerByPhoneNumber(phoneNumber);
+    }
+
+    @GetMapping("/email/{email}")
+    public EmployerDto getEmployerByEmail(@PathVariable String email) {
+        return employerService.getEmployerByEmail(email);
+    }
+
+
+
+
     @PostMapping("/vacancies")
     public ResponseEntity<String> createVacancy(@RequestBody Vacancies vacancies) {
         return ResponseEntity.ok("Вакансия создана!");
