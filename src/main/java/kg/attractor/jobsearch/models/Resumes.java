@@ -1,7 +1,10 @@
 package kg.attractor.jobsearch.models;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class Resumes {
     private Integer id;
     private String name;
@@ -87,5 +90,7 @@ public class Resumes {
         this.update_time = update_time;
         this.created_date = created_date;
         this.id = id;
+    }
+    public Resumes() {
     }
 }

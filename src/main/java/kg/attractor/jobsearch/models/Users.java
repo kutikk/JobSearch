@@ -1,18 +1,12 @@
 package kg.attractor.jobsearch.models;
 
+import lombok.Data;
+
+@Data
 public class Users {
     private Integer id;
     private String name;
     private String email;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     private String password;
     private String phone_number;
     private String avatar;
@@ -34,6 +28,14 @@ public class Users {
         this.age = age;
         this.account_type = account_type;
         this.resumesID = resumesID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
