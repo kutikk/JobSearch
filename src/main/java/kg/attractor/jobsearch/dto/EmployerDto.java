@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class EmployerDto {
     private Integer id;
-    private String name;
+    private String user_name;
     private String email;
     private String password;
     private String phone_number;

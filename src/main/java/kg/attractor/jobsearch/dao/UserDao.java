@@ -25,7 +25,7 @@ public class UserDao {
         return Optional.ofNullable(user);
     }
     public Optional<Users> getUsersByName(String name){
-        String sql = "select * from users where name like ?  LIMIT 1";
+        String sql = "select * from users where user_name like ? ";
         Users user = jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Users.class),name);
         return Optional.ofNullable(user);
     }

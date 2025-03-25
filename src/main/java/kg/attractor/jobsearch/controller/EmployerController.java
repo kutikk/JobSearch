@@ -27,9 +27,9 @@ public class EmployerController {
     public List<EmployerDto> getEmployers() {
         return employerService.getEmployers();
     }
-    @GetMapping("/name/{name}")
-    public EmployerDto getEmployerByName(@PathVariable String name) {
-        return employerService.getEmployerByName(name);
+    @GetMapping("/name/{user_name}")
+    public EmployerDto getEmployerByName(@PathVariable String user_name) {
+        return employerService.getEmployerByName(user_name);
     }
 
     @GetMapping("/phone/{phoneNumber}")

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Users {
     private Integer id;
-    private String name;
+    private String user_name;
     private String email;
     private String password;
     private String phone_number;
@@ -17,10 +17,10 @@ public class Users {
     public Users() {
     }
 
-    public Users(Integer id, String name, String email, String password, String phone_number,
+    public Users(Integer id, String user_name, String email, String password, String phone_number,
                  String avatar, Integer age, String account_type, Integer resumesID) {
         this.id = id;
-        this.name = name;
+        this.user_name = user_name;
         this.email = email;
         this.password = password;
         this.phone_number = phone_number;
@@ -39,11 +39,11 @@ public class Users {
     }
 
     public String getName() {
-        return name;
+        return user_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.user_name = name;
     }
 
     public String getEmail() {

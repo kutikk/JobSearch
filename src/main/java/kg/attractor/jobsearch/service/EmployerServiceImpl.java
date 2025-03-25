@@ -20,7 +20,7 @@ public class EmployerServiceImpl implements EmployerService{
      return list.stream()
              .map(e -> EmployerDto.builder()
                      .id(e.getId())
-                     .name(e.getName())
+                     .user_name(e.getName())
                      .email(e.getEmail())
                      .password(e.getPassword())
                      .phone_number(e.getPhone_number())
@@ -38,7 +38,7 @@ public EmployerDto getEmployerByName(String name){
               .orElseThrow(UserNotFoundException::new);
       return EmployerDto.builder()
               .id(user.getId())
-              .name(user.getName())
+              .user_name(user.getName())
               .email(user.getEmail())
               .password(user.getPassword())
               .phone_number(user.getPhone_number())
@@ -54,7 +54,7 @@ public EmployerDto getEmployerByPhoneNumber(String phoneNumber){
                 .orElseThrow(UserNotFoundException::new);
         return EmployerDto.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .user_name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .phone_number(user.getPhone_number())
@@ -70,7 +70,7 @@ public EmployerDto getEmployerByPhoneNumber(String phoneNumber){
                 .orElseThrow(UserNotFoundException::new);
         return EmployerDto.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .user_name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .phone_number(user.getPhone_number())
