@@ -93,4 +93,8 @@ public class Resumes {
     }
     public Resumes() {
     }
+
+    public boolean is_active() {
+        return true;
+    }
 }
