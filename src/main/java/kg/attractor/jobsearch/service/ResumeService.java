@@ -1,6 +1,7 @@
 package kg.attractor.jobsearch.service;
 
 import kg.attractor.jobsearch.dto.ResumeDto;
+import kg.attractor.jobsearch.models.Resumes;
 
 import java.util.List;
 
@@ -10,4 +11,10 @@ public interface ResumeService {
     ResumeDto getResumeByApplicant(int applicant_id);
 
     List<ResumeDto> getResumesApplicant(int applicant_id);
+
+    ResumeDto getResumesById(int resume_id);
+
+    ResumeDto updateResume(int resume_id, ResumeDto resumeDto);
+
+    ResumeDto createResume(Resumes resumeDto);
 }
