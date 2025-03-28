@@ -11,4 +11,6 @@ public interface VacancyService {
     List<VacancyDto> getAllVacancies();
 
     List<VacancyDto> getVacancyByCategory(int categoryID);
+
+    List<VacancyDto> getVacancyById(int i);
 }

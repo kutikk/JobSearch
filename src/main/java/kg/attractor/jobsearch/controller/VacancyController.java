@@ -30,4 +30,8 @@ public class VacancyController {
     public List<VacancyDto> getVacanciesByCategory(@PathVariable String category_id) {
      return vacancyService.getVacancyByCategory(Integer.parseInt(category_id));
     }
+    @GetMapping("{id}")
+    public List<VacancyDto> getVacanciesById(@PathVariable int id) {
+        return vacancyService.getVacancyById(id);
+    }
 }
