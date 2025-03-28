@@ -1,17 +1,19 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.impl;
 
 import kg.attractor.jobsearch.dao.UserDao;
 import kg.attractor.jobsearch.dto.EmployerDto;
 import kg.attractor.jobsearch.exceptions.UserNotFoundException;
 import kg.attractor.jobsearch.models.Users;
+import kg.attractor.jobsearch.service.EmployerService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmployerServiceImpl implements EmployerService{
+public class EmployerServiceImpl implements EmployerService {
     private final UserDao userDao;
 
     @Override
@@ -32,6 +34,7 @@ public class EmployerServiceImpl implements EmployerService{
              .toList();
 
     }
+@SneakyThrows
 @Override
 public EmployerDto getEmployerByName(String name){
       Users user = userDao.getUsersByName(name)
@@ -48,6 +51,7 @@ public EmployerDto getEmployerByName(String name){
               .resumesID(user.getResumesID())
               .build();
     }
+@SneakyThrows
 @Override
 public EmployerDto getEmployerByPhoneNumber(String phoneNumber){
         Users user = userDao.getUsersByPhoneNumber(phoneNumber)
@@ -64,6 +68,7 @@ public EmployerDto getEmployerByPhoneNumber(String phoneNumber){
                 .resumesID(user.getResumesID())
                 .build();
     }
+    @SneakyThrows
     @Override
     public EmployerDto getEmployerByEmail(String email){
         Users user = userDao.getUsersByEmail(email)

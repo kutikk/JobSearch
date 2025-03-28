@@ -1,5 +1,6 @@
 package kg.attractor.jobsearch.service;
 
+import kg.attractor.jobsearch.dto.Education_InfoDto;
 import kg.attractor.jobsearch.dto.ResumeDto;
 import kg.attractor.jobsearch.models.Resumes;
 
@@ -17,4 +18,6 @@ public interface ResumeService {
     ResumeDto updateResume(int resume_id, ResumeDto resumeDto);
 
     ResumeDto createResume(Resumes resumeDto);
+
+    boolean deleteResumeById(int resume_id);
 }

@@ -27,3 +27,12 @@ VALUES
     ('Дизайн', NULL),
     ('Java Разработчик', 1),
     ('UI/UX Дизайнер', 2);
+
+
+
+
+ALTER TABLE WORK_EXPERIENCE_INFO
+    ADD CONSTRAINT WORK_EXPERIENCE_INFO
+        FOREIGN KEY (resume_id)
+            REFERENCES resumes(id)
+            ON DELETE CASCADE;

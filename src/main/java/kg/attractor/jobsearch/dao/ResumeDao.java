@@ -3,6 +3,7 @@ package kg.attractor.jobsearch.dao;
 import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Users;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,13 @@ public class ResumeDao {
         return Optional.ofNullable(resumes);
     }
      public Optional<Resumes> getResumeById(int  resume_id){
-       String sql = "select * from resumes where id like ? LIMIT 1";
-       Resumes resumes = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Resumes.class),resume_id);
-       return Optional.ofNullable(resumes);
+       String sql = "select * from resumes where id like ? ";
+         try {
+             Resumes resumes = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Resumes.class),resume_id);
+             return Optional.ofNullable(resumes);
+         } catch (EmptyResultDataAccessException e) {
+             return Optional.empty();
+         }
     }
     public void updateResume(Resumes resumes) {
         String sql = "UPDATE resumes SET name = ?, category_id = ?, salary = ?, is_active = ?, applicant_id = ? WHERE id = ?;\n";
@@ -44,7 +49,7 @@ public class ResumeDao {
                 resumes.getName(),
                 resumes.getCategoryId(),
                 resumes.getSalary(),
-                resumes.isIs_active(),
+                resumes.is_active(),
                 resumes.getApplicant_id(),
                 resumes.getId());
     }
@@ -56,10 +61,15 @@ public class ResumeDao {
                 resume.getName(),
                 resume.getCategoryId(),
                 resume.getSalary(),
-                resume.isIs_active(),
+                resume.is_active(),
                 resume.getCreated_date(),
                 resume.getUpdate_time(),
                 resume.getApplicant_id());
+    }
+
+    public void deleteResumeById(int  resume_id){
+       String sql = "delete from resumes where id = ?";
+       jdbcTemplate.update(sql,resume_id);
     }
 
 

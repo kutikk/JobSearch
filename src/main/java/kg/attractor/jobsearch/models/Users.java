@@ -1,6 +1,8 @@
 package kg.attractor.jobsearch.models;
 
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class Users {

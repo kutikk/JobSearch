@@ -175,7 +175,6 @@ databaseChangeLog:
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
 
-
   - changeSet:
       id: create_responded_applicants_table
       author: kutush
@@ -206,6 +205,78 @@ databaseChangeLog:
                   name: confirmations
                   type: boolean
 
+
+  - changeSet:
+      id: create_table_education_info
+      author: kutush
+      changes:
+        - createTable:
+            tableName: education_info
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: institution
+                  type: varchar(100)
+              - column:
+                  name: program
+                  type: varchar(100)
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: end_date
+                  type: date
+              - column:
+                  name: degree
+                  type: varchar(100)
+              - column:
+                  name: resume_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_resumeEducation_id
+                    references: resumes
+                    nullable: false
+
+
+  - changeSet:
+      id: create_table_work_experience_info
+      author: kutush
+      changes:
+        - createTable:
+            tableName: work_experience_info
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: years
+                  type: int
+              - column:
+                  name: company_name
+                  type: varchar(100)
+              - column:
+                  name: position
+                  type: varchar(200)
+              - column:
+                  name: responsibilities
+                  type: varchar(100)
+              - column:
+                  name: resume_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_work_exp_resume_id
+                    references: resumes
+                    nullable: false
 
 
 

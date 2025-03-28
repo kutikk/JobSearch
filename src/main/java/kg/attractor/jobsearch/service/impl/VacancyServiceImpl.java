@@ -1,11 +1,9 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.impl;
 
 import kg.attractor.jobsearch.dao.VacancyDao;
-import kg.attractor.jobsearch.dto.ResumeDto;
 import kg.attractor.jobsearch.dto.VacancyDto;
-import kg.attractor.jobsearch.exceptions.UserNotFoundException;
-import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Vacancies;
+import kg.attractor.jobsearch.service.VacancyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
