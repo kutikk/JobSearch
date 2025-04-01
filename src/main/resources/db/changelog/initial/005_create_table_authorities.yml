@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006 create table authorities
+      author: kutush
+      changes:
+        - createTable:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: authority
+                  type: varchar(50)
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_id_authorities
+                    references: users(id)
+
