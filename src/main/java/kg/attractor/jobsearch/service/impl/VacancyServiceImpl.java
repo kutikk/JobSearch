@@ -74,4 +74,9 @@ public class VacancyServiceImpl implements VacancyService {
                 .toList();
 
     }
+
+    @Override
+    public List<VacancyDto> getVacancyById(int i) {
+        return List.of();
+    }
 }
