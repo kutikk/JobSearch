@@ -1,18 +1,14 @@
 package kg.attractor.jobsearch.models;
 
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NonNull;
+
+@Data
 public class Users {
     private Integer id;
-    private String name;
+    private String user_name;
     private String email;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     private String password;
     private String phone_number;
     private String avatar;
@@ -20,11 +16,13 @@ public class Users {
     private String account_type;
     private Integer resumesID;
 
+    public Users() {
+    }
 
-    public Users( Integer id,String name, String email, String password, String phone_number,
+    public Users(Integer id, String user_name, String email, String password, String phone_number,
                  String avatar, Integer age, String account_type, Integer resumesID) {
         this.id = id;
-        this.name = name;
+        this.user_name = user_name;
         this.email = email;
         this.password = password;
         this.phone_number = phone_number;
@@ -34,12 +32,20 @@ public class Users {
         this.resumesID = resumesID;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
-        return name;
+        return user_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.user_name = name;
     }
 
     public String getEmail() {
