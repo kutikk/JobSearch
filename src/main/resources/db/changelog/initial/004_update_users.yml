@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: "005-add-column-to-users"
+      author: kutush
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: enabled
+                  type: boolean
+                  
