@@ -1,4 +1,4 @@
-package kg.attractor.jobsearch.controller;
+package kg.attractor.jobsearch.controller.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

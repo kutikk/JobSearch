@@ -1,12 +1,10 @@
-package kg.attractor.jobsearch.controller;
+package kg.attractor.jobsearch.controller.api;
 
 import jakarta.validation.Valid;
 import kg.attractor.jobsearch.dto.ProfileDto;
 import kg.attractor.jobsearch.exceptions.UserNotFoundException;
 import kg.attractor.jobsearch.service.ProfileService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
