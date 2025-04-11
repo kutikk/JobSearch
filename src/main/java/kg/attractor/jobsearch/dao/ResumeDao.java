@@ -1,5 +1,6 @@
 package kg.attractor.jobsearch.dao;
 
+import kg.attractor.jobsearch.dto.ResumeDto;
 import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Users;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ResumeDao {
     private final JdbcTemplate jdbcTemplate;
+
 
 
    public List<Resumes> getResumes(int applicant_id){
@@ -70,6 +72,11 @@ public class ResumeDao {
     public void deleteResumeById(int  resume_id){
        String sql = "delete from resumes where id = ?";
        jdbcTemplate.update(sql,resume_id);
+    }
+
+    public List<Resumes> getAllResumes(){
+       String sql = "select * from resumes";
+       return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Resumes.class));
     }
 
 

@@ -1,4 +1,4 @@
-package kg.attractor.jobsearch.controller;
+package kg.attractor.jobsearch.controller.api;
 
 
 import kg.attractor.jobsearch.dto.EmployerDto;
@@ -17,8 +17,6 @@ import java.util.List;
 @RequestMapping("/employers")
 @RequiredArgsConstructor
 public class EmployerController {
-
-
 
 
     private final EmployerService employerService;

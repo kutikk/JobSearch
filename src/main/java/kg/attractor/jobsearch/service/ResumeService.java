@@ -20,4 +20,6 @@ public interface ResumeService {
     ResumeDto createResume(Resumes resumeDto);
 
     boolean deleteResumeById(int resume_id);
+
+    List<ResumeDto> getResumes();
 }

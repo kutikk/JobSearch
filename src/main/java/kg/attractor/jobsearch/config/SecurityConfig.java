@@ -50,12 +50,9 @@ public class SecurityConfig {
             .logout(AbstractHttpConfigurer::disable)
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize ->
-                    authorize.requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/vacancies/**").permitAll()
-                            .requestMatchers("/resumes/new").hasAuthority("ROLE_USER")
-                            .requestMatchers("/resumes/**").hasAuthority("ROLE_ADMIN")
-                            .anyRequest().authenticated()
+                    authorize.anyRequest().permitAll()  // Разрешаем доступ ко всем страницам без авторизации
             );
+
 
     return http.build();
   }

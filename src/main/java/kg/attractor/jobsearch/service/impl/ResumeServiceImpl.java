@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -163,6 +164,27 @@ public class ResumeServiceImpl implements ResumeService {
             resumeDao.deleteResumeById(resume_id);
             return true;
         }
+    }
+
+    @Override
+    public List<ResumeDto> getResumes() {
+        List<Resumes>  list= resumeDao.getAllResumes();
+        return list.stream()
+                .map(
+                        resumes -> ResumeDto.builder()
+                                .id(resumes.getId())
+                                .name(resumes.getName())
+                                .categoryId(resumes.getCategoryId())
+                                .salary(resumes.getSalary())
+                                .is_active(resumes.is_active())
+                                .update_time(resumes.getUpdate_time())
+                                .created_date(resumes.getCreated_date())
+                                .applicant_id(resumes.getApplicant_id())
+                                .build())
+                .collect(Collectors.toList());
+
+
+
     }
 
 
