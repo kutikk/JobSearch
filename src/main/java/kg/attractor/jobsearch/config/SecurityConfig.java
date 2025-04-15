@@ -43,16 +43,21 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             .sessionManagement(session ->
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             )
+
             .httpBasic(Customizer.withDefaults())
-            .formLogin(AbstractHttpConfigurer::disable)
+            .formLogin(form -> form
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/profile", true)
+            )
             .logout(AbstractHttpConfigurer::disable)
             .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(authorize ->
-                    authorize.anyRequest().permitAll()  // Разрешаем доступ ко всем страницам без авторизации
+            .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers("/login", "/auth/register").permitAll()
+                    .anyRequest().authenticated()
             );
-
 
     return http.build();
   }
