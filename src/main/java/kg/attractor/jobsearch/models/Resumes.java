@@ -2,6 +2,7 @@ package kg.attractor.jobsearch.models;
 
 import kg.attractor.jobsearch.dto.Education_InfoDto;
 import kg.attractor.jobsearch.dto.Work_Experience_Info_Dto;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
