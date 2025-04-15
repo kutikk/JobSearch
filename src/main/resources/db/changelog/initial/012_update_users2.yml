@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-all-user-passwords-to-qwerty
+      author: kutush
+      changes:
+        - update:
+            tableName: users
+            columns:
+              - column:
+                  name: password
+                  value: '$2a$12$N2ajuielFWS.Qxqn4FjDjezdg8HEq52XKFet3Ow9sHmOui9xYvmpm'
