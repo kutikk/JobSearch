@@ -12,10 +12,10 @@
             <div class="card shadow rounded-4">
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Регистрация</h2>
-                    <form action="/register" method="post" enctype="multipart/form-data">
+                    <form action="/auth/register" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="name" class="form-label">Имя</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="user_name" required>
                         </div>
 
                         <div class="mb-3">
@@ -30,12 +30,12 @@
 
                         <div class="mb-3">
                             <label for="phone" class="form-label">Телефон</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <input type="tel" class="form-control" id="phone" name="phone_number" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Аватар</label>
-                            <input type="file" class="form-control" id="avatar" name="avatar">
+                            <input type="file" class="form-control" id="avatar" name="avatarFile">
                         </div>
 
                         <div class="mb-3">
@@ -46,12 +46,12 @@
                         <div class="mb-3">
                             <label class="form-label">Тип аккаунта</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="accountType" id="employer" value="employer" required>
+                                <input class="form-check-input" type="radio" name="account_type" id="employer" value="employer" required>
                                 <label class="form-check-label" for="employer">Работодатель</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="accountType" id="jobseeker" value="jobseeker">
-                                <label class="form-check-label" for="jobseeker">Соискатель</label>
+                                <input class="form-check-input" type="radio" name="account_type" id="applicant" value="applicant">
+                                <label class="form-check-label" for="applicant">Соискатель</label>
                             </div>
                         </div>
 
