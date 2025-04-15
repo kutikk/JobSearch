@@ -22,21 +22,21 @@ public class ResumeDao {
 
 
 
-   public List<Resumes> getResumes(int applicant_id){
+   public List<Resumes> getResumes(Long applicant_id){
        String sql = "select * from resumes where applicant_id like ?";
        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Resumes.class),applicant_id);
    }
-    public Optional<Resumes> getResumeByCategory(int category_id){
+    public Optional<Resumes> getResumeByCategory(Long category_id){
         String sql = "select * from resumes where category_id like ? LIMIT 1";
         Resumes resumes = jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Resumes.class),category_id);
         return Optional.ofNullable(resumes);
     }
-    public Optional<Resumes> getResumeByApplicant(int applicant_id){
+    public Optional<Resumes> getResumeByApplicant(Long applicant_id){
         String sql = "select * from resumes where applicant_id like ? LIMIT 1";
         Resumes resumes = jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Resumes.class),applicant_id);
         return Optional.ofNullable(resumes);
     }
-     public Optional<Resumes> getResumeById(int  resume_id){
+     public Optional<Resumes> getResumeById(Long  resume_id){
        String sql = "select * from resumes where id like ? ";
          try {
              Resumes resumes = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Resumes.class),resume_id);
@@ -69,7 +69,7 @@ public class ResumeDao {
                 resume.getApplicant_id());
     }
 
-    public void deleteResumeById(int  resume_id){
+    public void deleteResumeById(Long resume_id){
        String sql = "delete from resumes where id = ?";
        jdbcTemplate.update(sql,resume_id);
     }
@@ -79,8 +79,20 @@ public class ResumeDao {
        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Resumes.class));
     }
 
+    public List<Resumes> getAllResumesByApplicantId(long applicant_id){
+       String sql = "select * from resumes where applicant_id like ? ";
+       return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Resumes.class),applicant_id);
+    }
 
+    public Long getResumeIDByName(String name) {
+        String sql = "SELECT id FROM resumes WHERE name = ?";
+        List<Long> result = jdbcTemplate.queryForList(sql, new Object[]{name}, Long.class);
 
-
+        if (result.size() == 1) {
+            return result.get(0);
+        } else {
+            return null;
+        }
+    }
 
 }
