@@ -16,6 +16,5 @@ public class Work_Experience_Info_Dto {
     private String company_name;
     private String position;
     private String responsibilities;
-
     private Integer resume_id;
 }

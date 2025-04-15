@@ -6,12 +6,7 @@ VALUES
 
 INSERT INTO resumes (name, salary, is_active,  applicant_id, category_id)
 VALUES
-    ('Java Разработчик', 1000.0, TRUE,  2, 1),
-    ('Java_Backend_разработчик', 1200.0, TRUE,  2, 2);
-
-
-
-
+    ('Тестировщик', 1200.0, TRUE,  12, 2);
 INSERT INTO vacancies (name, description, category_id, salary, exp_from, exp_to, is_active, author_id)
 VALUES
     ('Вакансия Java Разработчика', 'Ищем опытного Java разработчика для нашей команды.',
@@ -19,6 +14,8 @@ VALUES
 
     ('Вакансия Data Scientist', 'Ищем Data Scientist с опытом работы в машинном обучении.',
      2, 1200.0, 3, 6, TRUE, 1);
+
+
 
 
 INSERT INTO categories (name, parent_id)
@@ -51,13 +48,11 @@ VALUES
 
 INSERT INTO users (user_name, email, password, phone_number, avatar, age, account_type,ENABLED)
 VALUES
-    ('adminkutman', 'admin@example.com', '$2a$12$lUsg9FvT6MmPcEUg6DLmxu2YJbyxjlCEo3tVjl2IWn6d2foVCNOc2', '1234567890', 'employer_avatar.jpg', 35, 'employer',true),
-    ('userkuti', 'user@example.com', '$2a$12$ATqf6K89OuwyA9lsEDucpe19cSQ6w.q2Tsu5V0fO9df.M4jUGehXK', '0987654321', 'applicant_avatar.jpg', 28, 'applicant',true);
+    ('одмун', 'user@example.com', '$2a$12$k8afISv03WZxXFCBW34vZeNsqjSJQftpLE2JRuokfrCt/wXgJcnfG', '0987654321', 'applicant_avatar.jpg', 28, 'applicant',true);
 
 INSERT INTO authorities (authority, user_id)
 VALUES
-    ('ROLE_ADMIN', 10),
-    ('ROLE_USER', 11);
+    ('ROLE_USER', 19);
 
 SELECT user_name, password, enabled FROM users WHERE user_name = 'adminkutman';
 SELECT u.user_name, a.authority
@@ -67,3 +62,12 @@ WHERE u.user_name = 'adminkutman';
 
 DELETE FROM authorities
 WHERE user_id IN (7, 8, 10, 11);
+
+DELETE FROM resumes WHERE id = 86;
+ALTER TABLE CATEGORIES ALTER COLUMN PARENT_ID SET DATA TYPE BIGINT;
+ALTER TABLE RESUMES ALTER COLUMN APPLICANT_ID SET DATA TYPE BIGINT;
+
+TRUNCATE TABLE RESUMES;
+DELETE FROM USERS;
+DELETE FROM work_experience_info;
+

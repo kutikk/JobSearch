@@ -1,0 +1,97 @@
+databaseChangeLog:
+ - changeSet:
+        id: insert-authorities
+        author: kutush
+        changes:
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 30
+                - column:
+                    name: authority
+                    value: "ROLE_ADMIN"
+
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 31
+                - column:
+                    name: authority
+                    value: "ROLE_ADMIN"
+
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 32
+                - column:
+                    name: authority
+                    value: "ROLE_ADMIN"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 33
+                - column:
+                    name: authority
+                    value: "ROLE_ADMIN"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 34
+                - column:
+                    name: authority
+                    value: "ROLE_ADMIN"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 35
+                - column:
+                    name: authority
+                    value: "ROLE_USER"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 36
+                - column:
+                    name: authority
+                    value: "ROLE_USER"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 37
+                - column:
+                    name: authority
+                    value: "ROLE_USER"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 38
+                - column:
+                    name: authority
+                    value: "ROLE_USER"
+          - insert:
+              tableName: authorities
+              columns:
+                - column:
+                    name: user_id
+                    valueNumeric: 39
+                - column:
+                    name: authority
+                    value: "ROLE_USER"

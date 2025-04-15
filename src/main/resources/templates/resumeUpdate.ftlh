@@ -66,11 +66,11 @@
             <div class="card shadow rounded-4">
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Создание резюме</h2>
-                    <form action="/resumes/create" method="post" class="main-form-container">
+                    <form action="/resumes/edit/${resume.id}" method="post">
                         <div class="mb-4">
                             <div class="form-group mb-3">
                                 <label for="resumeTitle" class="form-label">Название резюме</label>
-                                <input type="text" class="form-control" id="resumeTitle" name="name" required>
+                                <input type="text" class="form-control" id="resumeTitle" name="name" value="${resume.name}" required>
                             </div>
 
                             <div class="form-group mb-3">
@@ -81,14 +81,13 @@
                                     <option value="2">Дизайн</option>
                                     <option value="3">Java Разработчик</option>
                                     <option value="4">UI/UX Дизайнер</option>
-                                    <option value="5">Прочее</option>
                                 </select>
                             </div>
 
 
                             <div class="form-group mb-3">
                                 <label for="expectedSalary" class="form-label">Ожидаемый уровень оклада</label>
-                                <input type="number" class="form-control" id="expectedSalary" name="salary" min="0" >
+                                <input type="number" class="form-control" id="expectedSalary" value="${resume.salary}" name="salary"  min="0" required>
                             </div>
 
                         </div>
@@ -98,22 +97,22 @@
                                 <h3>Опыт работы</h3>
                                 <div class="form-group mb-3">
                                     <label for="workYear" class="form-label">Год работы</label>
-                                    <input type="number" class="form-control" id="workYear" name="work_experience_info[0].years" >
+                                    <input type="number" class="form-control" id="workYear"  name="work_experience_info[1].years" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="companyName" class="form-label">Название компании</label>
-                                    <input type="text" class="form-control" id="companyName" name="work_experience_info[0].company_name" >
+                                    <input type="text" class="form-control" id="companyName"  name="work_experience_info[1].company_name" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="position" class="form-label">Должность</label>
-                                    <input type="text" class="form-control" id="position" name="work_experience_info[0].position" >
+                                    <input type="text" class="form-control" id="position"  name="work_experience_info[1].position" >
                                 </div>
 
                                 <div class="form-group">
                                     <label for="duties" class="form-label">Обязанности</label>
-                                    <textarea class="form-control" id="duties" name="work_experience_info[0].responsibilities" rows="3" ></textarea>
+                                    <textarea class="form-control" id="duties"  name="work_experience_info[1].responsibilities" rows="3" ></textarea>
                                 </div>
                             </div>
                             <button type="button" class="btn btn-outline-primary btn-add">+</button>
@@ -124,22 +123,22 @@
                                 <h3>Образование</h3>
                                 <div class="form-group mb-3">
                                     <label for="education" class="form-label">Образование</label>
-                                    <input type="text" class="form-control" id="education" name="education_info[0].institution" >
+                                    <input type="text" class="form-control" id="education"  name="education_info[1].institution" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="educationInstitution" class="form-label">Где учился</label>
-                                    <input type="text" class="form-control" id="educationInstitution" name="education_info[0].program" >
+                                    <input type="text" class="form-control" id="educationInstitution" name="education_info[1].program" >
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="start_date" class="form-label">Дата начала</label>
-                                    <input type="date" class="form-control" id="start_date" name="education_info[0].start_date" placeholder="ГГГГ-ММ-ДД">
+                                    <input type="date" class="form-control" id="start_date"  name="education_info[1].start_date" placeholder="ГГГГ-ММ-ДД">
                                 </div>
 
                                 <div class="form-group mb-3">
                                     <label for="end_date" class="form-label">Дата окончания</label>
-                                    <input type="date" class="form-control" id="end_date" name="education_info[0].end_date" placeholder="ГГГГ-ММ-ДД">
+                                    <input type="date" class="form-control" id="end_date"   name="education_info[1].end_date" placeholder="ГГГГ-ММ-ДД">
                                 </div>
                             </div>
                             <button type="button" class="btn btn-outline-primary btn-add">+</button>
@@ -180,18 +179,11 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label d-block">Статус:</label>
+                        <input type="hidden" id="isActive" name="is_active" value="true">
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="is_active" id="active" value="true" checked>
-                                <label class="form-check-label" for="active">Активно</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="is_active" id="inactive" value="false">
-                                <label class="form-check-label" for="inactive">Неактивно</label>
-                            </div>
+                        <div class="mb-4">
+                            <button type="button" class="btn btn-success" id="activeBtn" data-value="true">Активно</button>
+                            <button type="button" class="btn btn-danger" id="inactiveBtn" data-value="false">Неактивно</button>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 py-2">Опубликовать</button>

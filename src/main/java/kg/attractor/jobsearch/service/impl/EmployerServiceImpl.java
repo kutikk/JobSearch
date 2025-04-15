@@ -2,6 +2,7 @@ package kg.attractor.jobsearch.service.impl;
 
 import kg.attractor.jobsearch.dao.UserDao;
 import kg.attractor.jobsearch.dto.EmployerDto;
+import kg.attractor.jobsearch.dto.UsersDto;
 import kg.attractor.jobsearch.exceptions.UserNotFoundException;
 import kg.attractor.jobsearch.models.Users;
 import kg.attractor.jobsearch.service.EmployerService;
@@ -85,6 +86,7 @@ public EmployerDto getEmployerByPhoneNumber(String phoneNumber){
                 .resumesID(user.getResumesID())
                 .build();
     }
+
 
 
 }

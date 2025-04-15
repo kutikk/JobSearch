@@ -2,9 +2,12 @@ package kg.attractor.jobsearch.dto;
 
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import kg.attractor.jobsearch.models.Resumes;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -23,4 +26,5 @@ public class ProfileDto
     private String avatar;
     private Integer age;
     private String account_type;
+    private List<Resumes> resumes;
 }
