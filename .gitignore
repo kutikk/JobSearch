@@ -34,3 +34,4 @@ build/
 /db/test.lock.db
 /db
 /.idea
+/db/
