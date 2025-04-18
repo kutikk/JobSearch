@@ -1,6 +1,7 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.impl;
 
 import kg.attractor.jobsearch.exceptions.ErrorResponseBody;
+import kg.attractor.jobsearch.service.interfaces.ErrorService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ErrorServiceImpl implements ErrorService{
+public class ErrorServiceImpl implements ErrorService {
     @Override
     public ErrorResponseBody makeResponse(Exception exception){
         String message = exception.getMessage();

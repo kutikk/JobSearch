@@ -32,7 +32,16 @@ public class VacancyDao {
         String sql = "select * from vacancies where category_id = ?;";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Vacancies.class),categoryID);
     }
+    public Long getVacancyIdByName(String name) {
+        String sql = "SELECT id FROM vacancies WHERE name = ?";
+        List<Long> result = jdbcTemplate.queryForList(sql, new Object[]{name}, Long.class);
 
+        if (result.size() == 1) {
+            return result.get(0);
+        } else {
+            return null;
+        }
+    }
 
 
 

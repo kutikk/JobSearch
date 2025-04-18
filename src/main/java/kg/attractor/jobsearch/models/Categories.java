@@ -1,31 +1,25 @@
 package kg.attractor.jobsearch.models;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "categories")
 public class Categories {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
-    private Integer parent_id;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getParent_id() {
-        return parent_id;
-    }
-
-    public void setParent_id(Integer parent_id) {
-        this.parent_id = parent_id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Categories parent;
 }

@@ -1,8 +1,6 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.interfaces;
 
-import kg.attractor.jobsearch.dto.Education_InfoDto;
 import kg.attractor.jobsearch.dto.ResumeDto;
-import kg.attractor.jobsearch.models.Resumes;
 
 import java.util.List;
 
@@ -22,4 +20,6 @@ public interface ResumeService {
     boolean deleteResumeById(Long resume_id);
 
     List<ResumeDto> getResumes();
+
+    ResumeDto getResumeDtoById(Long resume_id);
 }

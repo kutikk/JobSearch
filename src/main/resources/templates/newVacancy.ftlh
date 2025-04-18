@@ -32,24 +32,24 @@
         <div class="col-lg-8">
             <div class="vacancy-form">
                 <h2 class="text-center mb-4">Создание вакансии</h2>
-                <form action="/vacancy/create" method="post">
+                <form action="/vacancies/create" method="post">
                     <div class="form-section">
                         <div class="form-group mb-3">
                             <label for="vacancyTitle" class="form-label">Название вакансии</label>
-                            <input type="text" class="form-control" id="vacancyTitle" name="title" required>
+                            <input type="text" class="form-control" id="vacancyTitle" name="name" required>
                         </div>
                     </div>
                     <div class="form-section">
                         <div class="form-group mb-3">
                             <label for="category" class="form-label">Категория</label>
-                            <select class="form-select" id="category" name="category" required>
+                            <select class="form-select" id="category" name="category_id" required>
                                 <option value="">Выберите категорию</option>
-                                <option value="it">IT</option>
-                                <option value="marketing">Маркетинг</option>
-                                <option value="sales">Продажи</option>
-                                <option value="finance">Финансы</option>
-                                <option value="hr">HR</option>
-                                <option value="design">Дизайн</option>
+                                <option value="1">Разработка ПО</option>
+                                <option value="2">Java Разработчик</option>
+                                <option value="3">UI/UX Дизайнер</option>
+                                <option value="4">Финансы</option>
+                                <option value="5">HR</option>
+
                             </select>
                         </div>
                     </div>
@@ -69,17 +69,17 @@
                         <label class="form-label">Требуемый опыт</label>
                         <div class="experience-range">
                             <div class="form-group">
-                                <input type="number" class="form-control" id="experienceMin" name="experienceMin" placeholder="От (лет)" min="0">
+                                <input type="number" class="form-control" id="experienceMin" name="exp_from" placeholder="От (лет)" min="0">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" id="experienceMax" name="experienceMax" placeholder="До (лет)" min="0">
+                                <input type="number" class="form-control" id="experienceMax" name="exp_to" placeholder="До (лет)" min="0">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-section">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="isActive" name="isActive" checked>
+                            <input class="form-check-input" type="checkbox" id="isActive" name="is_active" checked>
                             <label class="form-check-label" for="isActive">Активна</label>
                         </div>
                     </div>

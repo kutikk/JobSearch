@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Education_InfoDto {
-    private Integer id;
+    private Long id;
     private String institution;
     private String program;
     private LocalDate start_date;

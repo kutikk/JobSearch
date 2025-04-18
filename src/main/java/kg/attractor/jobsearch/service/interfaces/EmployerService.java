@@ -1,4 +1,4 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.interfaces;
 
 import kg.attractor.jobsearch.dto.EmployerDto;
 

@@ -1,0 +1,224 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-15-vacancies
+      author: kutman
+      changes:
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Java Developer" }
+              - column: { name: description, value: "Разработка backend на Java" }
+              - column: { name: category_id, valueNumeric: 1 }
+              - column: { name: salary, valueNumeric: 100000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 3 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 29 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Frontend Developer" }
+              - column: { name: description, value: "Создание UI на React" }
+              - column: { name: category_id, valueNumeric: 2 }
+              - column: { name: salary, valueNumeric: 90000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 30 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "QA Engineer" }
+              - column: { name: description, value: "Тестирование веб-приложений" }
+              - column: { name: category_id, valueNumeric: 3 }
+              - column: { name: salary, valueNumeric: 70000 }
+              - column: { name: exp_from, valueNumeric: 0 }
+              - column: { name: exp_to, valueNumeric: 1 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 31 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Project Manager" }
+              - column: { name: description, value: "Управление командой" }
+              - column: { name: category_id, valueNumeric: 4 }
+              - column: { name: salary, valueNumeric: 120000 }
+              - column: { name: exp_from, valueNumeric: 3 }
+              - column: { name: exp_to, valueNumeric: 5 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 32 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "DevOps Engineer" }
+              - column: { name: description, value: "CI/CD, Docker, Kubernetes" }
+              - column: { name: category_id, valueNumeric: 3 }
+              - column: { name: salary, valueNumeric: 110000 }
+              - column: { name: exp_from, valueNumeric: 2 }
+              - column: { name: exp_to, valueNumeric: 4 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 33 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Business Analyst" }
+              - column: { name: description, value: "Анализ бизнес-процессов" }
+              - column: { name: category_id, valueNumeric: 2 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Тестировщик" }
+              - column: { name: description, value: "Автоматизация тестирования" }
+              - column: { name: category_id, valueNumeric: 4 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Работник на склад" }
+              - column: { name: description, value: "Разнорабочий" }
+              - column: { name: category_id, valueNumeric: 1 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Дизайнер" }
+              - column: { name: description, value: "Графический дизайнер" }
+              - column: { name: category_id, valueNumeric: 3 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Оператор монтажер" }
+              - column: { name: description, value: "монтаж видео" }
+              - column: { name: category_id, valueNumeric: 3 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Рекрутер" }
+              - column: { name: description, value: "менеджер в отдел кадров" }
+              - column: { name: category_id, valueNumeric: 4 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Архитектор" }
+              - column: { name: description, value: "Проектировка зданий" }
+              - column: { name: category_id, valueNumeric: 4 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Водитель курьер" }
+              - column: { name: description, value: "с собственным авто" }
+              - column: { name: category_id, valueNumeric: 3 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Кризис менеджер" }
+              - column: { name: description, value: "Анализ бизнес-процессов" }
+              - column: { name: category_id, valueNumeric: 1 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Оператор колл центра" }
+              - column: { name: description, value: "Осуществление звонков" }
+              - column: { name: category_id, valueNumeric: 2 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+        - insert:
+            tableName: vacancies
+            columns:
+              - column: { name: name, value: "Менеджер офиса" }
+              - column: { name: description, value: "работа в офисе " }
+              - column: { name: category_id, valueNumeric: 4 }
+              - column: { name: salary, valueNumeric: 85000 }
+              - column: { name: exp_from, valueNumeric: 1 }
+              - column: { name: exp_to, valueNumeric: 2 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: author_id, valueNumeric: 34 }
+              - column: { name: created_date, valueDate: now() }
+              - column: { name: update_time, valueDate: now() }
+

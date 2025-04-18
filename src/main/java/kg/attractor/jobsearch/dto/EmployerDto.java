@@ -9,8 +9,7 @@ import lombok.NonNull;
 @Data
 @Builder
 public class EmployerDto {
-
-    private Integer id;
+    private Long id;
     @NotBlank
     private String user_name;
     @NotBlank
@@ -22,5 +21,5 @@ public class EmployerDto {
     private String avatar;
     private Integer age;
     private String account_type;
-    private Integer resumesID;
+    private Long resumesID;
 }
