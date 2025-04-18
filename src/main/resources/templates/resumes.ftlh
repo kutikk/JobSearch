@@ -12,30 +12,24 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
-            <th>ID</th>
             <th>Имя</th>
-            <th>Категория</th>
-            <th>Желаемая зарплата</th>
-            <th>Активность</th>
-            <th>Дата создания</th>
-            <th>Обновлено</th>
-            <th>Кандидат ID</th>
+            <th>Зарплата</th>
         </tr>
         </thead>
         <tbody>
         <#list resumes as resume>
             <tr>
-                <td>${resume.id}</td>
-                <td>${resume.name}</td>
-                <td>${resume.categoryId}</td>
-                <td>${resume.salary}</td>
-                <td>${resume.is_active()?string("Да", "Нет")}</td>
-                <td>${resume.created_date}</td>
-                <td>${resume.update_time}</td>
-                <td>${resume.applicant_id}</td>
-
+                <td>
+                    <a href="/resumes/details/${resume.id}" class="btn btn-info">
+                        ${resume.name}
+                    </a>
+                </td>
+                <td>
+                    <span class="text-nowrap">${resume.salary} сом</span>
+                </td>
             </tr>
         </#list>
+        <a href="/profile" class="btn btn-secondary mt-3">В профиль</a>
         </tbody>
     </table>
 </div>

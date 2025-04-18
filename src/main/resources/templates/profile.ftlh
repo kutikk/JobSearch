@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -10,26 +11,66 @@
             width: 270px;
             height: 270px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .notification-badge {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: -5px;
+            right: -5px;
             transform: translate(50%, -50%);
+            font-size: 0.8rem;
         }
+
         .name {
             margin-top: 10px;
+            font-weight: 600;
+            font-size: 1.25rem;
         }
+
         .createResume {
             width: 170px;
             height: 170px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
         }
+
+        .createResume:hover {
+            transform: translateY(-5px);
+        }
+
         .button-group {
             display: flex;
             gap: 15px;
             align-items: center;
             justify-content: center;
+            margin-top: 15px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -40,7 +81,7 @@
     <div class="row g-3 align-items-center mb-4">
         <div class="col-md-3 text-center">
             <#if profile.avatar??>
-                <img src="/uploads/${profile.avatar}" alt="Аватар" class="avatar shadow">
+                <img src="/uploads/${profile.avatar}" alt="Аватар" class="avatar shadow-lg">
             </#if>
         </div>
 
@@ -64,6 +105,11 @@
                     <a href="/vacancies/new" class="btn btn-outline-primary createResume">
                         <i class="bi bi-plus-lg"></i> Создать вакансию
                     </a>
+                </#if>
+                <#if profile.account_type == "employer">
+                <a href="/resumes" class="btn btn-outline-primary createResume">
+                    <i class="bi bi-list"></i> Посмотреть активные резюме
+                </a>
                 </#if>
             </div>
         </div>
@@ -94,9 +140,9 @@
             <#list profile.vacancies as vacancy>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">${vacancy.title}</h5>
-                        <p class="card-text text-muted">Опубликовано: ${vacancy.posted_at}</p>
-                        <a href="/vacancies/edit/${vacancy.id}" class="btn btn-success">Редактировать</a>
+                        <h5 class="card-title">${vacancy.name}</h5>
+                        <p class="card-text text-muted">Опубликовано: ${vacancy.created_date}</p>
+                        <a href="/vacancies/update/${vacancy.id}" class="btn btn-success">Редактировать</a>
                     </div>
                 </div>
             </#list>
