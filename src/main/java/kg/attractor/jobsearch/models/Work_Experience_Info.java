@@ -1,59 +1,28 @@
 package kg.attractor.jobsearch.models;
 
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "work_experience_info")
 public class Work_Experience_Info {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Integer years;
     private String company_name;
     private String position;
     private String responsibilities;
-    private Integer resume_id;
+    @ManyToOne
+    @JoinColumn(name = "resume_id")
+    private Resumes resume;
 
-
-    public Integer getResume_id() {
-        return resume_id;
-    }
-
-    public void setResume_id(Integer resume_id) {
-        this.resume_id = resume_id;
-    }
-
-    public String getCompany_name() {
-        return company_name;
-    }
-
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
-    }
-
-    public Integer getYears() {
-        return years;
-    }
-
-    public void setYears(Integer years) {
-        this.years = years;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getResponsibilities() {
-        return responsibilities;
-    }
-
-    public void setResponsibilities(String responsibilities) {
-        this.responsibilities = responsibilities;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }
