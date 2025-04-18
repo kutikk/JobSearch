@@ -12,7 +12,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -55,7 +54,8 @@ public class SecurityConfig {
             .logout(AbstractHttpConfigurer::disable)
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/login", "/auth/register").permitAll()
+                    .requestMatchers("/login", "/auth/register","/vacancies","/profile/*" ).permitAll()
+
                     .anyRequest().authenticated()
             );
 

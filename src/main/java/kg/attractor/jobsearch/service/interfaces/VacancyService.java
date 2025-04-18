@@ -1,4 +1,4 @@
-package kg.attractor.jobsearch.service;
+package kg.attractor.jobsearch.service.interfaces;
 
 import kg.attractor.jobsearch.dto.VacancyDto;
 
@@ -12,5 +12,9 @@ public interface VacancyService {
 
     List<VacancyDto> getVacancyByCategory(int categoryID);
 
-    List<VacancyDto> getVacancyById(int i);
+    String createVacancy(VacancyDto vacancyDto);
+
+    VacancyDto getVacancyById(Integer id);
+
+    String  updateVacancy(VacancyDto vacancyDto);
 }

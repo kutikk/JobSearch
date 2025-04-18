@@ -52,7 +52,7 @@ public class ResumeDao {
                 resumes.getCategoryId(),
                 resumes.getSalary(),
                 resumes.is_active(),
-                resumes.getApplicant_id(),
+                resumes.getApplicant(),
                 resumes.getId());
     }
 
@@ -66,7 +66,7 @@ public class ResumeDao {
                 resume.is_active(),
                 resume.getCreated_date(),
                 resume.getUpdate_time(),
-                resume.getApplicant_id());
+                resume.getApplicant());
     }
 
     public void deleteResumeById(Long resume_id){

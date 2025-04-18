@@ -1,8 +1,5 @@
 package kg.attractor.jobsearch.dao;
 
-import kg.attractor.jobsearch.dto.ProfileDto;
-import kg.attractor.jobsearch.exceptions.UserNotFoundException;
-import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
