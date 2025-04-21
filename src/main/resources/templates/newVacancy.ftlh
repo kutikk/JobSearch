@@ -44,11 +44,11 @@
                             <label for="category" class="form-label">Категория</label>
                             <select class="form-select" id="category" name="category_id" required>
                                 <option value="">Выберите категорию</option>
-                                <option value="1">Разработка ПО</option>
-                                <option value="2">Java Разработчик</option>
-                                <option value="3">UI/UX Дизайнер</option>
-                                <option value="4">Финансы</option>
-                                <option value="5">HR</option>
+                                <option value="Разработка ПО">Разработка ПО</option>
+                                <option value="Дизайн">Дизайн</option>
+                                <option value="Строительство">Строительство</option>
+                                <option value="Менеджмент">Менеджмент</option>
+                                <option value="Услуги">Услуги</option>
 
                             </select>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="form-section">
                         <div class="form-group mb-3">
                             <label for="salary" class="form-label">Заработная плата</label>
-                            <input type="text" class="form-control" id="salary" name="salary" placeholder="Например: от 100 000 руб." required>
+                            <input type="number" class="form-control" id="salary" name="salary" placeholder="Например: от 100 000 сом." required>
                         </div>
                     </div>
                     <div class="form-section">

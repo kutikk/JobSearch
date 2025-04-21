@@ -1,15 +1,23 @@
 package kg.attractor.jobsearch.service.impl;
 
-import kg.attractor.jobsearch.dao.ProfileDao;
-import kg.attractor.jobsearch.dao.ResumeDao;
+
 import kg.attractor.jobsearch.dto.UserDto;
 import kg.attractor.jobsearch.exceptions.ProfileAlreadyExistsException;
 import kg.attractor.jobsearch.models.Resumes;
+import kg.attractor.jobsearch.models.Role;
 import kg.attractor.jobsearch.models.Users;
 import kg.attractor.jobsearch.models.Vacancies;
+import kg.attractor.jobsearch.repository.ResumeRepository;
+import kg.attractor.jobsearch.repository.RoleRepository;
+import kg.attractor.jobsearch.repository.UserRepository;
 import kg.attractor.jobsearch.repository.VacanciesRepository;
 import kg.attractor.jobsearch.service.interfaces.ProfileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,28 +30,23 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
-    private final ProfileDao profileDao;
-    private final ResumeDao resumeDao;
     private final VacanciesRepository vacanciesRepository;
+    private final UserRepository userRepository;
+    private final ResumeRepository resumeRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     @Override
-    public UserDto getProfileById(long profile_id) {
-        Optional<Users> optionalUser = profileDao.getProfileById(profile_id);
-        if (optionalUser.isEmpty()) {
-            return null;
-        }
+    public UserDto getProfileById(String email, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
-        Users users = optionalUser.get();
-        if(users.getAccount_type().equals("applicant")) {
-            List<Resumes> resumes;
-            try {
-                resumes = resumeDao.getAllResumesByApplicantId(profile_id);
+        Users users = userRepository.findById(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-            } catch (Exception e) {
-                resumes = Collections.emptyList();
-            }
+        if (users.getAccount_type().equals("APPLICANT")) {
+            Page<Resumes> resumesPage = (Page<Resumes>) resumeRepository.findByApplicantEmail(email, pageable);
+
             return UserDto.builder()
-                    .id(users.getId())
                     .user_name(users.getUser_name())
                     .email(users.getEmail())
                     .password(users.getPassword())
@@ -51,18 +54,14 @@ public class ProfileServiceImpl implements ProfileService {
                     .avatar(users.getAvatar())
                     .age(users.getAge())
                     .account_type(users.getAccount_type())
-                    .resumes(resumes)
+                    .resumes(resumesPage)
+                    .totalPages(resumesPage.getTotalPages())
+                    .totalElements(resumesPage.getTotalElements())
                     .build();
-        }
-        else {
-            List<Vacancies> vacancies;
-            try {
-                vacancies = vacanciesRepository.findAllByAuthor_Id(profile_id);
-            } catch (Exception e) {
-                vacancies = Collections.emptyList();
-            }
+        } else {
+            Page<Vacancies> vacanciesPage = (Page<Vacancies>) vacanciesRepository.findAllByAuthorEmail(email, pageable);
+
             return UserDto.builder()
-                    .id(users.getId())
                     .user_name(users.getUser_name())
                     .email(users.getEmail())
                     .password(users.getPassword())
@@ -70,32 +69,25 @@ public class ProfileServiceImpl implements ProfileService {
                     .avatar(users.getAvatar())
                     .age(users.getAge())
                     .account_type(users.getAccount_type())
-                    .vacancies(vacancies)
+                    .vacancies(vacanciesPage)
+                    .totalPages(vacanciesPage.getTotalPages())
+                    .totalElements(vacanciesPage.getTotalElements())
                     .build();
         }
-
     }
 
-    @Override
-    public long getIdByUsername(String username) {
-        try {
-            return profileDao.getIdByUsername(username);
-        } catch (Exception e) {
-            return -1;
-        }
-    }
+
+
 
     @Override
-    public void updateProfileWithFile(Long userId, String email, String phone, int age, MultipartFile avatarFile) {
+    public void updateProfileWithFile( String name,String email, String phone, int age, MultipartFile avatarFile) {
         try {
-            Users user = profileDao.getProfileByIdc(userId);
-            if (user == null) return;
-
-            user.setEmail(email);
+            Users user = userRepository.findById(name).get();
+            user.setUser_name(email);
             user.setPhone_number(phone);
             user.setAge(age);
             avatarSave(avatarFile, user);
-            profileDao.updateProfile(user);
+            userRepository.save(user);
         } catch (Exception e) {
             throw new ProfileAlreadyExistsException("Ошибка при редактировании профиля");
         }
@@ -103,26 +95,22 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public String createProfile(UserDto userDto, MultipartFile avatarFile) {
-        if (profileDao.getIdByUsername(userDto.getUser_name()) != null) {
-            throw new ProfileAlreadyExistsException("Профиль с таким именем уже существует.");
-        }
-        try {
-            Users user = new Users();
-            user.setUser_name(userDto.getUser_name());
-            user.setEmail(userDto.getEmail());
-            user.setPassword(userDto.getPassword());
-            user.setPhone_number(userDto.getPhone_number());
-            user.setAge(userDto.getAge());
-            user.setAccount_type(userDto.getAccount_type());
-
-            avatarSave(avatarFile, user);
-            profileDao.saveProfile(user);
-
-            return "/success";
-        } catch (Exception e) {
-            throw new RuntimeException("Ошибка при создании профиля", e);
-        }
+        String hashPass = passwordEncoder.encode(userDto.getPassword());
+        Users user = new Users();
+        user.setUser_name(userDto.getUser_name());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(hashPass);
+        user.setPhone_number(userDto.getPhone_number());
+        user.setAge(userDto.getAge());
+        user.setAccount_type(userDto.getAccount_type());
+        user.setEnabled(true);
+        avatarSave(avatarFile, user);
+        Role role = roleRepository.findByRoleName(userDto.getAccount_type());
+        user.setRoles(List.of(role));
+        userRepository.save(user);
+        return "/success";
     }
+
 
     private void avatarSave(MultipartFile avatarFile, Users user) {
         if (avatarFile != null && !avatarFile.isEmpty() && user != null) {
@@ -140,4 +128,25 @@ public class ProfileServiceImpl implements ProfileService {
             }
         }
     }
+
+    @Override
+    public UserDto getPublicProfileById(String email) {
+        Optional<Users> optionalUser = userRepository.findById(email);
+        if (optionalUser.isEmpty()) {
+            return null;
+        }
+        Users users = optionalUser.get();
+            return UserDto.builder()
+                    .user_name(users.getUser_name())
+                    .email(users.getEmail())
+                    .password(users.getPassword())
+                    .phone_number(users.getPhone_number())
+                    .avatar(users.getAvatar())
+                    .age(users.getAge())
+                    .account_type(users.getAccount_type())
+                    .build();
+        }
+
+
+
 }

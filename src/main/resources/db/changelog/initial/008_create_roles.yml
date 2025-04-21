@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: create 3 roles
+      author: kutush
+      changes:
+        - sql:
+            sql:
+              insert into role(role)
+              values
+               ('ADMIN'),
+               ('EMPLOYER'),
+               ('APPLICANT');

@@ -93,7 +93,7 @@
 
         <div class="col-md-6">
             <div class="button-group">
-                <#if profile.account_type == "applicant">
+                <#if profile.account_type == "APPLICANT">
                     <a href="/resumes/new" class="btn btn-outline-danger createResume">
                         <i class="bi bi-plus-lg"></i> Создать резюме
                     </a>
@@ -101,12 +101,12 @@
                         Отклики
                         <span class="badge bg-danger rounded-pill notification-badge">5</span>
                     </a>
-                <#elseif profile.account_type == "employer">
+                <#elseif profile.account_type == "EMPLOYER">
                     <a href="/vacancies/new" class="btn btn-outline-primary createResume">
                         <i class="bi bi-plus-lg"></i> Создать вакансию
                     </a>
                 </#if>
-                <#if profile.account_type == "employer">
+                <#if profile.account_type == "EMPLOYER">
                 <a href="/resumes" class="btn btn-outline-primary createResume">
                     <i class="bi bi-list"></i> Посмотреть активные резюме
                 </a>
@@ -116,11 +116,11 @@
     </div>
 
     <hr>
-
-    <#if profile.account_type == "applicant">
+    <#if profile.account_type == "APPLICANT">
         <h3>Мои резюме</h3>
-        <#if profile.resumes?? && profile.resumes?has_content>
-            <#list profile.resumes as resume>
+        <#if profile.resumes?? && profile.resumes.content?has_content>
+
+            <#list profile.resumes.content as resume>
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">${resume.name}</h5>
@@ -130,14 +130,33 @@
                     </div>
                 </div>
             </#list>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="text-muted">
+                    Страница ${currentPage + 1} из ${profile.resumes.totalPages}
+                </div>
+                <div class="btn-group">
+                    <#if currentPage gt 0>
+                        <a href="/profile?page=${currentPage - 1}&size=${pageSize}" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left"></i> Назад
+                        </a>
+                    </#if>
+                    <#if (currentPage + 1) lt profile.resumes.totalPages>
+                        <a href="/profile?page=${currentPage + 1}&size=${pageSize}" class="btn btn-outline-primary">
+                            Вперёд <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </#if>
+                </div>
+            </div>
         <#else>
             <p>У вас пока нет резюме.</p>
         </#if>
+    </#if>
 
-    <#elseif profile.account_type == "employer">
+    <#if profile.account_type == "EMPLOYER">
         <h3>Мои вакансии</h3>
-        <#if profile.vacancies?? && profile.vacancies?has_content>
-            <#list profile.vacancies as vacancy>
+        <#if profile.vacancies?? && profile.vacancies.content?has_content>
+            <#list profile.vacancies.content as vacancy>
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">${vacancy.name}</h5>
@@ -146,10 +165,30 @@
                     </div>
                 </div>
             </#list>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="text-muted">
+                    Страница ${currentPage + 1} из ${profile.vacancies.totalPages}
+                </div>
+                <div class="btn-group">
+                    <#if currentPage gt 0>
+                        <a href="/profile?page=${currentPage - 1}&size=${pageSize}" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left"></i> Назад
+                        </a>
+                    </#if>
+                    <#if (currentPage + 1) lt profile.vacancies.totalPages>
+                        <a href="/profile?page=${currentPage + 1}&size=${pageSize}" class="btn btn-outline-primary">
+                            Вперёд <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </#if>
+                </div>
+            </div>
         <#else>
             <p>У вас пока нет вакансий.</p>
         </#if>
     </#if>
+
+
 
 </div>
 

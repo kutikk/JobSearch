@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: fix_vacancies_author_id_type
-      author: kutush
-      changes:
-        - modifyDataType:
-            tableName: vacancies
-            columnName: author_id
-            newDataType: BIGINT

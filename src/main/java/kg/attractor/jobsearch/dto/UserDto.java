@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import kg.attractor.jobsearch.models.Resumes;
 import kg.attractor.jobsearch.models.Vacancies;
 import lombok.*;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -15,11 +16,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class UserDto {
-    private Long id;
 
     @NotBlank(message = "Имя обязательно для заполнения")
     private String user_name;
-
     @NotBlank(message = "Email обязателен для заполнения")
     @Email(message = "Введите корректный email")
     private String email;
@@ -30,7 +29,11 @@ public class UserDto {
     private String phone_number;
     private String avatar;
     private Integer age;
+    @NotBlank(message = "Выберите тип аккаунта!")
     private String account_type;
-    private List<Resumes> resumes;
-    private List<Vacancies> vacancies;
+    private Page<Resumes> resumes;
+    private Page<Vacancies> vacancies;
+    private int totalPages;
+    private long totalElements;
+
 }

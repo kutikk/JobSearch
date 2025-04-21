@@ -2,16 +2,19 @@ package kg.attractor.jobsearch.service.interfaces;
 
 import kg.attractor.jobsearch.dto.UserDto;
 import kg.attractor.jobsearch.exceptions.UserNotFoundException;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.print.Pageable;
 import java.io.IOException;
 
 public interface ProfileService {
-    UserDto getProfileById(long profile_id) throws UserNotFoundException;
+    UserDto getProfileById(String profile_id,int page,int size) throws UserNotFoundException;
 
-    long getIdByUsername(String username) ;
 
-    void updateProfileWithFile(Long userId, String name, String phone, int age, MultipartFile avatarFile) throws IOException;
+    void updateProfileWithFile( String name,String email, String phone, int age, MultipartFile avatarFile) throws IOException;
 
     String createProfile(UserDto userDto, MultipartFile avatarFile);
+
+    UserDto getPublicProfileById(String email);
 }

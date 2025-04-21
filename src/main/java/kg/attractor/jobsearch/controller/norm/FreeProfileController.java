@@ -1,5 +1,6 @@
 package kg.attractor.jobsearch.controller.norm;
 
+import kg.attractor.jobsearch.dto.UserDto;
 import kg.attractor.jobsearch.exceptions.UserNotFoundException;
 import kg.attractor.jobsearch.service.interfaces.ProfileService;
 import org.springframework.security.core.Authentication;
@@ -21,11 +22,16 @@ public class FreeProfileController {
     }
 
     @GetMapping
-    public String profile(Model model) throws UserNotFoundException {
+    public String profile(  @RequestParam(defaultValue = "0") int page,
+                            @RequestParam(defaultValue = "2") int size, Model model) throws UserNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        long userId = profileService.getIdByUsername(username);
-        model.addAttribute("profile", profileService.getProfileById(userId) );
+        String email = auth.getName();
+        UserDto profile = profileService.getProfileById(email, page, size);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("profile", profile);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", profile.getTotalPages());
+        model.addAttribute("totalItems", profile.getTotalElements());
         return "profile";
     }
     @GetMapping("update")
@@ -35,19 +41,18 @@ public class FreeProfileController {
 
     @PostMapping("update")
     public String updateProfile(@RequestParam("avatar") MultipartFile avatar,
-                                @RequestParam("email") String email,
+                                @RequestParam("user_name") String user_name,
                                 @RequestParam("phone") String phone,
                                 @RequestParam("age") int age) throws IOException, UserNotFoundException {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        long userId = profileService.getIdByUsername(username);
-        profileService.updateProfileWithFile(userId, email, phone, age, avatar);
+        String email = auth.getName();
+        profileService.updateProfileWithFile( email,user_name, phone, age, avatar);
         return "redirect:/profile";
     }
     @GetMapping("/{id}")
-    public String viewProfileById(@PathVariable("id") Long id, Model model) throws UserNotFoundException {
-        model.addAttribute("profile", profileService.getProfileById(id));
+    public String viewProfileById(@PathVariable("id") String id, Model model) {
+        model.addAttribute("profile", profileService.getPublicProfileById(id));
         return "publicProfile";
     }
 

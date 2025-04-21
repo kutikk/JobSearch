@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-sample-vacancies
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO vacancies (name, description, category_id, salary, exp_from, exp_to, is_active, author_id, created_date, update_time)
+              VALUES
+              ('Senior Software Developer', 'Разработка сложных программных решений для различных бизнес-задач', 'Разработка ПО', 5000.0, 3, 5, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Frontend Developer', 'Разработка пользовательских интерфейсов с использованием современных технологий', 'Разработка ПО', 5500.0, 2, 4, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Backend Developer', 'Проектирование и реализация серверной логики для веб-приложений', 'Разработка ПО', 6000.0, 3, 6, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('UI/UX Designer', 'Проектирование удобных и красивых интерфейсов для веб и мобильных приложений', 'Дизайн', 6500.0, 2, 5, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('Graphic Designer', 'Создание визуальных материалов для маркетинговых и рекламных целей', 'Дизайн', 7000.0, 3, 6, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('Product Designer', 'Разработка дизайна продукта с фокусом на пользовательский опыт', 'Дизайн', 7500.0, 4, 7, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('Construction Project Manager', 'Управление строительными проектами от начала до конца', 'Строительство', 8000.0, 5, 8, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Civil Engineer', 'Проектирование и строительство инженерных сооружений', 'Строительство', 8500.0, 4, 6, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Site Supervisor', 'Контроль за выполнением строительных работ на площадке', 'Строительство', 9000.0, 3, 5, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Marketing Manager', 'Разработка и реализация маркетинговых стратегий для компании', 'Менеджмент', 9500.0, 4, 7, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('Operations Manager', 'Управление операционными процессами внутри компании', 'Менеджмент', 10000.0, 5, 8, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('HR Manager', 'Найм, обучение и развитие сотрудников в компании', 'Менеджмент', 10500.0, 4, 7, TRUE, 'user5@example.com', NOW(), NOW()),
+              ('Customer Support Specialist', 'Предоставление высококачественного обслуживания клиентов и решение их вопросов', 'Услуги', 11000.0, 1, 4, TRUE, 'user4@example.com', NOW(), NOW()),
+              ('Sales Support', 'Поддержка отдела продаж, обработка заявок и запросов', 'Услуги', 11500.0, 2, 5, TRUE, 'user4@example.com', NOW(), NOW());

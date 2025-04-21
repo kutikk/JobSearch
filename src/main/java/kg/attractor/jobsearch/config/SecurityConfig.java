@@ -22,11 +22,17 @@ public class SecurityConfig {
 
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    String fetchUserQuery = "SELECT user_name AS username, password, enabled FROM users WHERE user_name = ?";
+    String fetchUserQuery = "select email, password, enabled " +
+            "from users " +
+            "where email = ?";
+    String fetchAuthorityQuery = "SELECT u.email, r.role, a.authority " +
+            "FROM users u " +
+            "JOIN usr_roles ur ON u.email = ur.usr_id " +
+            "JOIN role r ON ur.role_id = r.id " +
+            "JOIN roles_authorities ra ON r.id = ra.role_id " +
+            "JOIN authority a ON ra.authority_id = a.id " +
+            "WHERE u.email = ?";
 
-    String fetchAuthorityQuery = "SELECT u.user_name AS username, a.authority " +
-            "FROM users u JOIN authorities a ON u.id = a.user_id " +
-            "WHERE u.user_name = ?";
 
     auth.jdbcAuthentication()
             .dataSource(dataSource)
@@ -49,12 +55,12 @@ public class SecurityConfig {
             .formLogin(form -> form
                     .loginPage("/login")
                     .permitAll()
-                    .defaultSuccessUrl("/profile", true)
+                    .defaultSuccessUrl("/home", true)
             )
             .logout(AbstractHttpConfigurer::disable)
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/login", "/auth/register","/vacancies","/profile/*" ).permitAll()
+                    .requestMatchers("/login", "/auth/register","/vacancies","/profile/*","/home" ).permitAll()
 
                     .anyRequest().authenticated()
             );

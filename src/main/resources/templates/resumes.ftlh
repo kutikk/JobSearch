@@ -30,8 +30,27 @@
             </tr>
         </#list>
         <a href="/profile" class="btn btn-secondary mt-3">В профиль</a>
+        <a href="/home" class="btn btn-secondary mt-3">Главная</a>
         </tbody>
     </table>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <div class="text-muted">
+            Страница ${currentPage + 1} из ${totalPages}
+        </div>
+        <div class="btn-group">
+            <#if currentPage gt 0>
+                <a href="/resumes?page=${currentPage - 1}&size=${pageSize}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Назад
+                </a>
+            </#if>
+            <#if (currentPage + 1) lt totalPages>
+                <a href="/resumes?page=${currentPage + 1}&size=${pageSize}" class="btn btn-outline-primary">
+                    Вперёд <i class="bi bi-arrow-right"></i>
+                </a>
+            </#if>
+        </div>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>

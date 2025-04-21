@@ -77,11 +77,11 @@
                                 <label for="category" class="form-label">Категория</label>
                                 <select class="form-select" id="category" name="categoryId" required>
                                     <option value="">Выберите категорию</option>
-                                    <option value="1">Разработчик ПО</option>
-                                    <option value="2">Дизайн</option>
-                                    <option value="3">Java Разработчик</option>
-                                    <option value="4">UI/UX Дизайнер</option>
-                                    <option value="5">Прочее</option>
+                                    <option value="Разработка ПО">Разработка ПО</option>
+                                    <option value="Дизайн">Дизайн</option>
+                                    <option value="Строительство">Строительство</option>
+                                    <option value="Менеджмент">Менеджмент</option>
+                                    <option value="Услуги">Услуги</option>
                                 </select>
                             </div>
 
@@ -182,18 +182,15 @@
 
                         <div class="mb-3">
                             <label class="form-label d-block">Статус:</label>
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="is_active" id="active" value="true" checked>
                                 <label class="form-check-label" for="active">Активно</label>
                             </div>
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="is_active" id="inactive" value="false">
                                 <label class="form-check-label" for="inactive">Неактивно</label>
                             </div>
                         </div>
-
                         <button type="submit" class="btn btn-primary w-100 py-2">Опубликовать</button>
                     </form>
                 </div>

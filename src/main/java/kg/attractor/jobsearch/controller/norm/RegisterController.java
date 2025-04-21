@@ -14,11 +14,9 @@ import java.io.IOException;
 @RequestMapping("/auth")
 public class RegisterController {
     private final ProfileService profileService;
-
     public RegisterController(ProfileService profileService) {
         this.profileService = profileService;
     }
-
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new UserDto());
@@ -35,7 +33,6 @@ public class RegisterController {
             model.addAttribute("user", userDto);
             return "register";
         }
-
         return profileService.createProfile(userDto, avatarFile);
     }
 

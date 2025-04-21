@@ -7,20 +7,14 @@ databaseChangeLog:
             tableName: users
             columns:
               - column:
-                  name: id
-                  type: long
-                  autoIncrement: true
+                  name: email
+                  type: varchar(255)
                   constraints:
-                    primaryKey: true
                     nullable: false
+                    primaryKey: true
               - column:
                   name: user_name
                   type: varchar(55)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: email
-                  type: varchar(50)
                   constraints:
                     nullable: false
               - column:
@@ -48,6 +42,11 @@ databaseChangeLog:
                   type: varchar(55)
                   constraints:
                     nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
   - changeSet:
       id: create-categories_table
       author: kutush
@@ -56,22 +55,17 @@ databaseChangeLog:
             tableName: categories
             columns:
               - column:
-                  name: id
-                  type: long
-                  autoIncrement: true
+                  name: name
+                  type: varchar(255)
                   constraints:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: name
-                  type: varchar(255)
-              - column:
                   name: parent_id
-                  type: int
+                  type: varchar(255)
                   constraints:
                     foreignKeyName: fk_parent_id
-                    references: categories(id)
-
+                    references: categories(name)
 
   - changeSet:
       id: create-resumes-table
@@ -82,7 +76,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: long
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -108,17 +102,17 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
               - column:
                   name: applicant_id
-                  type: int
+                  type: varchar(255)
                   constraints:
                     foreignKeyName: fk_applicant_id
-                    references: users(id)
+                    references: users(email)
               - column:
                   name: category_id
-                  type: int
+                  type: varchar(255)
                   constraints:
                     nullable: false
                     foreignKeyName: fk_category_id
-                    references: categories(id)
+                    references: categories(name)
 
   - changeSet:
       id: create_vacancies_table
@@ -129,7 +123,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     nullable: false
@@ -142,10 +136,10 @@ databaseChangeLog:
                   type: text
               - column:
                   name: category_id
-                  type: int
+                  type: varchar(255)
                   constraints:
                     foreignKeyName: fk_categories_id
-                    references: categories(id)
+                    references: categories(name)
               - column:
                   name: salary
                   type: float
@@ -162,10 +156,10 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: author_id
-                  type: int
+                  type: varchar(255)
                   constraints:
                     foreignKeyName: fk_author_id
-                    references: users(id)
+                    references: users(email)
               - column:
                   name: created_date
                   type: timestamp
@@ -174,36 +168,6 @@ databaseChangeLog:
                   name: update_time
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
-
-  - changeSet:
-      id: create_responded_applicants_table
-      author: kutush
-      changes:
-        - createTable:
-            tableName: responded_applicants
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: resume_id
-                  type: int
-                  constraints:
-                    foreignKeyName: fk_resume_id
-                    references: resumes(id)
-              - column:
-                  name: vacancies_id
-                  type: int
-                  constraints:
-                    foreignKeyName: fk_vacancies_id
-                    references: vacancies(id)
-              - column:
-                  name: confirmations
-                  type: boolean
 
 
   - changeSet:
@@ -215,7 +179,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -237,10 +201,10 @@ databaseChangeLog:
                   type: varchar(100)
               - column:
                   name: resume_id
-                  type: int
+                  type: bigint
                   constraints:
                     foreignKeyName: fk_resumeEducation_id
-                    references: resumes
+                    references: resumes(id)
                     nullable: false
 
 
@@ -253,7 +217,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -272,10 +236,10 @@ databaseChangeLog:
                   type: varchar(100)
               - column:
                   name: resume_id
-                  type: int
+                  type: bigint
                   constraints:
                     foreignKeyName: fk_work_exp_resume_id
-                    references: resumes
+                    references: resumes(id)
                     nullable: false
 
 

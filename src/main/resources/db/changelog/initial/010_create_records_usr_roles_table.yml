@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-records-usr-roles-table
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              insert into usr_roles(usr_id, role_id)
+              values
+                ('user1@example.com', (select id from role where role = 'APPLICANT'));
+              
+              insert into usr_roles(usr_id, role_id)
+              values
+                ('user2@example.com', (select id from role where role = 'EMPLOYER'));
+
+              insert into usr_roles(usr_id, role_id)
+              values
+                ('user3@example.com', (select id from role where role = 'APPLICANT'));
+
+              insert into usr_roles(usr_id, role_id)
+              values
+                ('user4@example.com', (select id from role where role = 'EMPLOYER'));
+
+              insert into usr_roles(usr_id, role_id)
+              values
+                ('user5@example.com', (select id from role where role = 'APPLICANT'));
