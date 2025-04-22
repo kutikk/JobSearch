@@ -1,5 +1,6 @@
 package kg.attractor.jobsearch.controller.norm;
 
+import jakarta.validation.Valid;
 import kg.attractor.jobsearch.dto.VacancyDto;
 import kg.attractor.jobsearch.models.Vacancies;
 import kg.attractor.jobsearch.service.interfaces.ProfileService;
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,11 +33,18 @@ public class VacanciesController {
     }
     @GetMapping("new")
     public String newVacancy(Model model) {
+        model.addAttribute("vacancy", new VacancyDto());
         return   "newVacancy";
     }
 
     @PostMapping("create")
-    public String createVacancy(VacancyDto  vacancyDto, Model model) {
+    public String createVacancy(@ModelAttribute("vacancy")
+                                    @Valid VacancyDto vacancyDto, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("vacancy", vacancyDto);
+            return "newVacancy";
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         vacancyDto.setAuthor_id(username);

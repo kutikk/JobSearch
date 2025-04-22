@@ -22,7 +22,6 @@ public class UserDto {
     @NotBlank(message = "Email обязателен для заполнения")
     @Email(message = "Введите корректный email")
     private String email;
-
     @NotBlank(message = "Пароль обязателен для заполнения")
     @Size(min = 6, message = "Пароль должен содержать минимум 6 символов")
     private String password;

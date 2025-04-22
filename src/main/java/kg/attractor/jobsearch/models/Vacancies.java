@@ -20,7 +20,7 @@ public class Vacancies {
     @Lob
     @Column
     private String description;
-    private String category_id;
+    private Long category_id;
     private Float salary;
     private Integer exp_from;
     private Integer exp_to;
