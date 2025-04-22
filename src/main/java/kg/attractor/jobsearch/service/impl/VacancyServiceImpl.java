@@ -1,6 +1,4 @@
 package kg.attractor.jobsearch.service.impl;
-
-import kg.attractor.jobsearch.dao.VacancyDao;
 import kg.attractor.jobsearch.dto.VacancyDto;
 import kg.attractor.jobsearch.exceptions.ResumeNotFoundException;
 import kg.attractor.jobsearch.models.Users;
@@ -8,17 +6,19 @@ import kg.attractor.jobsearch.models.Vacancies;
 import kg.attractor.jobsearch.repository.VacanciesRepository;
 import kg.attractor.jobsearch.service.interfaces.VacancyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class VacancyServiceImpl implements VacancyService {
-    private final VacancyDao vacancyDao;
     private final VacanciesRepository  vacanciesRepository;
 
     @Override
@@ -35,7 +35,7 @@ public class VacancyServiceImpl implements VacancyService {
                     vacancyDto.setId(vacancies.getId());
                     vacancyDto.setName(vacancies.getName());
                     vacancyDto.setDescription(vacancies.getDescription());
-                    vacancyDto.setAuthor_id(vacancies.getAuthor().getId());
+                    vacancyDto.setAuthor_id(vacancies.getAuthor().getEmail());
                     vacancyDto.setSalary(Float.valueOf(vacancies.getSalary()));
                     vacancyDto.setExp_from(Integer.valueOf(vacancies.getExp_from()));
                     vacancyDto.setCreated_date(vacancies.getCreated_date());
@@ -55,12 +55,9 @@ public class VacancyServiceImpl implements VacancyService {
     @Override
     public String createVacancy(VacancyDto vacancyDto) {
         Users user = new Users();
-        user.setId(vacancyDto.getAuthor_id());
+        user.setEmail(vacancyDto.getAuthor_id());
         Vacancies vacancies = new Vacancies();
-        Long existingVacancyId = vacancyDao.getVacancyIdByName(vacancyDto.getName());
-        if (existingVacancyId != null) {
-            return "errorPage";
-        }
+
         return getString(vacancyDto, user, vacancies);
 
     }
@@ -111,6 +108,11 @@ public VacancyDto getVacancyById(Integer id) {
         vacancies.setIs_active(vacancyDto.getIs_active());
         vacanciesRepository.save(vacancies);
         return "/success";
+    }
+@Override
+public Page<Vacancies> getVacancies(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+        return vacanciesRepository.findAll(pageable);
     }
 
 

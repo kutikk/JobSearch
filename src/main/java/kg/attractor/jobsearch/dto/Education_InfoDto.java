@@ -18,5 +18,5 @@ public class Education_InfoDto {
     private LocalDate start_date;
     private LocalDate end_date;
     private String degree;
-    private Integer resume_id ;
+    private Long resume_id ;
 }

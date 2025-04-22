@@ -1,15 +1,19 @@
 package kg.attractor.jobsearch.service.interfaces;
 
 import kg.attractor.jobsearch.dto.ResumeDto;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface ResumeService {
+
+
+
     ResumeDto getResumeByCategory(Long categoryID);
 
-    ResumeDto getResumeByApplicant(Long applicant_id);
+    ResumeDto getResumeByApplicant(String applicant_id);
 
-    List<ResumeDto> getResumesApplicant(Long applicant_id);
+    List<ResumeDto> getResumesApplicant(String applicant_id);
 
     ResumeDto getResumesById(Long resume_id);
 
@@ -19,7 +23,8 @@ public interface ResumeService {
 
     boolean deleteResumeById(Long resume_id);
 
-    List<ResumeDto> getResumes();
+    Page<ResumeDto> getResumesPage(int page, int size);
+
 
     ResumeDto getResumeDtoById(Long resume_id);
 }

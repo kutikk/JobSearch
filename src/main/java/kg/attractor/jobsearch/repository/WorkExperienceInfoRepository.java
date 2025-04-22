@@ -12,4 +12,5 @@ public interface WorkExperienceInfoRepository extends
         JpaRepository<Work_Experience_Info, Long> {
     List<Work_Experience_Info> findAllByResumeId(Long resumeId);
 
+
 }

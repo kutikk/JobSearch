@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: delete authority column
+      author: kutush
+      changes:
+        - sql:
+              sql: |
+                ALTER TABLE role DROP COLUMN authority_id;
+

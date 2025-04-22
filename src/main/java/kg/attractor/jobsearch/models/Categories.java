@@ -16,9 +16,7 @@ public class Categories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Categories parent;

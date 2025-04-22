@@ -14,8 +14,8 @@
                     <h2 class="text-center mb-4">Редактирование профиля</h2>
                     <form action="/profile/update" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Почта</label>
-                            <input type="text" class="form-control" id="name" name="email" value="" required>
+                            <label for="name" class="form-label">Имя</label>
+                            <input type="text" class="form-control" id="name" name="user_name" value="" required>
                         </div>
 
                         <div class="mb-3">

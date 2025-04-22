@@ -76,12 +76,12 @@
                         <div class="mb-3">
                             <label class="form-label">Тип аккаунта</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="account_type" id="employer" value="employer"
+                                <input class="form-check-input" type="radio" name="account_type" id="employer" value="EMPLOYER"
                                        <#if user.account_type?? && user.account_type == "employer">checked</#if>>
                                 <label class="form-check-label" for="employer">Работодатель</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="account_type" id="applicant" value="applicant"
+                                <input class="form-check-input" type="radio" name="account_type" id="applicant" value="APPLICANT"
                                        <#if user.account_type?? && user.account_type == "applicant">checked</#if>>
                                 <label class="form-check-label" for="applicant">Соискатель</label>
                             </div>

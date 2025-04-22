@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-sample-resumes
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO resumes(name, category_id, salary, is_active, update_time, created_date, applicant_id) VALUES
+                ('Senior Java Developer', 'Разработка ПО', 250000, true, NOW(), NOW(), 'user1@example.com'),
+                ('UX/UI Designer', 'Дизайн', 150000, true, NOW(), NOW(), 'user1@example.com'),
+                ('Project Manager', 'Менеджмент', 180000, true, NOW(), NOW(), 'user1@example.com'),
+                ('Frontend Developer', 'Разработка ПО', 200000, true, NOW(), NOW(), 'user2@example.com'),
+                ('Graphic Designer', 'Дизайн', 120000, true, NOW(), NOW(), 'user2@example.com'),
+                ('Construction Engineer', 'Строительство', 170000, true, NOW(), NOW(), 'user2@example.com'),
+                ('Backend Developer', 'Разработка ПО', 220000, true, NOW(), NOW(), 'user3@example.com'),
+                ('Interior Designer', 'Дизайн', 140000, true, NOW(), NOW(), 'user3@example.com'),
+                ('HR Manager', 'Менеджмент', 130000, true, NOW(), NOW(), 'user3@example.com'),
+                ('DevOps Engineer', 'Разработка ПО', 280000, true, NOW(), NOW(), 'user1@example.com'),
+                ('Cleaning Service Specialist', 'Услуги', 80000, true, NOW(), NOW(), 'user2@example.com'),
+                ('Construction Supervisor', 'Строительство', 190000, true, NOW(), NOW(), 'user3@example.com'),
+                ('Mobile App Developer', 'Разработка ПО', 210000, true, NOW(), NOW(), 'user1@example.com'),
+                ('Marketing Manager', 'Менеджмент', 160000, true, NOW(), NOW(), 'user2@example.com'),
+                ('Landscape Designer', 'Дизайн', 110000, true, NOW(), NOW(), 'user3@example.com');

@@ -70,25 +70,40 @@
                         <div class="mb-4">
                             <div class="form-group mb-3">
                                 <label for="resumeTitle" class="form-label">Название резюме</label>
-                                <input type="text" class="form-control" id="resumeTitle" name="name" required>
+                                <input type="text" class="form-control" id="resumeTitle" name="name" value="${resume.name!}" >
+                                <#if bindingResult?? && bindingResult.hasFieldErrors("name")>
+                                    <div class="text-danger">
+                                        <#list bindingResult.getFieldErrors("name") as err>${err.defaultMessage}<br></#list>
+                                    </div>
+                                </#if>
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="category" class="form-label">Категория</label>
-                                <select class="form-select" id="category" name="categoryId" required>
-                                    <option value="">Выберите категорию</option>
-                                    <option value="1">Разработчик ПО</option>
+                                <select class="form-select" id="category" name="categoryId" >
+                                    <option value="${resume.categoryId!}">Выберите категорию</option>
+                                    <option value="1">Разработка ПО</option>
                                     <option value="2">Дизайн</option>
-                                    <option value="3">Java Разработчик</option>
-                                    <option value="4">UI/UX Дизайнер</option>
-                                    <option value="5">Прочее</option>
+                                    <option value="3">Строительство</option>
+                                    <option value="4">Менеджмент</option>
+                                    <option value="5">Услуги</option>
                                 </select>
+                                <#if bindingResult?? && bindingResult.hasFieldErrors("categoryId")>
+                                    <div class="text-danger">
+                                        <#list bindingResult.getFieldErrors("categoryId") as err>${err.defaultMessage}<br></#list>
+                                    </div>
+                                </#if>
                             </div>
 
 
                             <div class="form-group mb-3">
                                 <label for="expectedSalary" class="form-label">Ожидаемый уровень оклада</label>
-                                <input type="number" class="form-control" id="expectedSalary" name="salary" min="0" >
+                                <input type="number" class="form-control" id="expectedSalary" name="salary" min="0" value="${resume.salary!}" >
+                                <#if bindingResult?? && bindingResult.hasFieldErrors("salary")>
+                                    <div class="text-danger">
+                                        <#list bindingResult.getFieldErrors("salary") as err>${err.defaultMessage}<br></#list>
+                                    </div>
+                                </#if>
                             </div>
 
                         </div>
@@ -182,18 +197,20 @@
 
                         <div class="mb-3">
                             <label class="form-label d-block">Статус:</label>
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="is_active" id="active" value="true" checked>
                                 <label class="form-check-label" for="active">Активно</label>
                             </div>
-
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="is_active" id="inactive" value="false">
                                 <label class="form-check-label" for="inactive">Неактивно</label>
                             </div>
+                            <#if bindingResult?? && bindingResult.hasFieldErrors("is_active")>
+                                <div class="text-danger">
+                                    <#list bindingResult.getFieldErrors("is_active") as err>${err.defaultMessage}<br></#list>
+                                </div>
+                            </#if>
                         </div>
-
                         <button type="submit" class="btn btn-primary w-100 py-2">Опубликовать</button>
                     </form>
                 </div>

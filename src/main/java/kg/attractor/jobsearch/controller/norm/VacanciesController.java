@@ -1,18 +1,17 @@
 package kg.attractor.jobsearch.controller.norm;
 
-import kg.attractor.jobsearch.dao.VacancyDao;
+import jakarta.validation.Valid;
 import kg.attractor.jobsearch.dto.VacancyDto;
 import kg.attractor.jobsearch.models.Vacancies;
 import kg.attractor.jobsearch.service.interfaces.ProfileService;
 import kg.attractor.jobsearch.service.interfaces.VacancyService;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,11 +19,10 @@ import java.util.List;
 @RequestMapping("vacancies")
 public class VacanciesController {
     private final VacancyService vacancyService;
-    private final ProfileService profileService;
 
-    public VacanciesController(VacancyService vacancyService, ProfileService profileService) {
+    public VacanciesController(VacancyService vacancyService) {
         this.vacancyService = vacancyService;
-        this.profileService = profileService;
+
     }
 
     @GetMapping()
@@ -35,15 +33,21 @@ public class VacanciesController {
     }
     @GetMapping("new")
     public String newVacancy(Model model) {
+        model.addAttribute("vacancy", new VacancyDto());
         return   "newVacancy";
     }
 
     @PostMapping("create")
-    public String createVacancy(VacancyDto  vacancyDto, Model model) {
+    public String createVacancy(@ModelAttribute("vacancy")
+                                    @Valid VacancyDto vacancyDto, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("vacancy", vacancyDto);
+            return "newVacancy";
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        Long userId = profileService.getIdByUsername(username);
-        vacancyDto.setAuthor_id(userId);
+        vacancyDto.setAuthor_id(username);
         return vacancyService.createVacancy(vacancyDto);
     }
     @GetMapping("update/{id}")

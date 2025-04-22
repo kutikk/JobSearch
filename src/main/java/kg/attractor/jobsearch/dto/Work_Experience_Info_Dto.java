@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Work_Experience_Info_Dto {
-    private Integer id;
+    private Long id;
     private Integer years;
     private String company_name;
     private String position;
     private String responsibilities;
-    private Integer resume_id;
+    private Long resume_id;
 }

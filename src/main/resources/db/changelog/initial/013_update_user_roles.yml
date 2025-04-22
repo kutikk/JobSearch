@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-sample-resumes
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              UPDATE users
+              SET account_type = 'APPLICANT'
+              WHERE email IN ('user1@example.com', 'user2@example.com', 'user3@example.com');
+              UPDATE users
+              SET account_type = 'EMPLOYER'
+              WHERE email IN ('user4@example.com', 'user5@example.com');

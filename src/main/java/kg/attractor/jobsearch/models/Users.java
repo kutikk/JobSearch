@@ -13,11 +13,9 @@ import java.util.List;
 @Entity
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id" )
-    private Long  id;
-    private String user_name;
+    @Column(name = "email" )
     private String email;
+    private String user_name;
     private String password;
     private String phone_number;
     private String avatar;
@@ -28,6 +26,14 @@ public class Users {
     private List<Resumes> resumes;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "author")
     private List<Vacancies> vacancies;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "usr_roles",
+            joinColumns = @JoinColumn(name = "usr_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
+
 
 
 

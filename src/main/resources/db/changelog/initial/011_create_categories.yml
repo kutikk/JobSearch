@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-records-usr-roles-table
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              insert into categories(name)
+              values
+                ('Разработка ПО'),
+                ('Дизайн'),
+                ('Строительство'),
+                ('Менеджмент'),
+                ('Услуги'),
+                ('Швейное производство'),
+                ('Гос служаб');
+              

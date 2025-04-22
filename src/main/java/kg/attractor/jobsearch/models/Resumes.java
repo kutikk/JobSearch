@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ public class Resumes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Integer categoryId;
+    private Long categoryId;
     private Float salary;
     private boolean is_active;
     private LocalDateTime update_time;
@@ -23,5 +24,9 @@ public class Resumes {
     @ManyToOne
     @JoinColumn(name = "applicant_id")
     private Users applicant;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "resume")
+    private List<Education_Info> educationInfos;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "resume")
+    private List<Work_Experience_Info> workExperienceInfo;
 
 }
