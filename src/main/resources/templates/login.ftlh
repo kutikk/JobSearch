@@ -98,7 +98,7 @@
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 mb-3">Войти</button>
+                    <button type="submit"  class="btn btn-primary w-100 mb-3" >Войти</button>
 
                     <div class="d-grid gap-2">
                         <a href="auth/register" class="btn btn-secondary">Зарегистрироваться</a>

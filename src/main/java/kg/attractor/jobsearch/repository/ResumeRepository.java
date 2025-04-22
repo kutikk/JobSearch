@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ResumeRepository extends JpaRepository <Resumes, Long> {
-    Resumes  getResumeByCategoryId(String categoryID);
+    Resumes  getResumeByCategoryId(Long categoryID);
     Resumes getResumeByApplicantEmail(String applicant_id);
     @Query("SELECT r FROM Resumes r WHERE r.applicant.email = :email")
     Page<Resumes> findByApplicantEmail(@Param("email") String email, Pageable pageable);
