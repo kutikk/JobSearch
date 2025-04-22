@@ -9,7 +9,7 @@ public interface ResumeService {
 
 
 
-    ResumeDto getResumeByCategory(String categoryID);
+    ResumeDto getResumeByCategory(Long categoryID);
 
     ResumeDto getResumeByApplicant(String applicant_id);
 

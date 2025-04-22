@@ -35,7 +35,7 @@ public class ResumeServiceImpl implements ResumeService {
 
 
     @Override
-    public ResumeDto getResumeByCategory(String categoryID){
+    public ResumeDto getResumeByCategory(Long categoryID){
         Resumes resumes = resumeRepository.getResumeByCategoryId(categoryID);
 
         return ResumeDto.builder()

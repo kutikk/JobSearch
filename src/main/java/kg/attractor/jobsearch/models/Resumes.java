@@ -16,7 +16,7 @@ public class Resumes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String categoryId;
+    private Long categoryId;
     private Float salary;
     private boolean is_active;
     private LocalDateTime update_time;
