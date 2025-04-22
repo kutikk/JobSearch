@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: delete-and-create-table
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              DELETE FROM resumes;
+              DELETE FROM vacancies;
+
+  - changeSet:
+      id: add_new_column
+      author: kutush
+      changes:
+        - addColumn:
+            tableName: resumes
+            columns:
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_new_category_id
+                    references: categories(id)

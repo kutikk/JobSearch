@@ -4,6 +4,7 @@ databaseChangeLog:
       author: kutush
       changes:
         - sql:
+            comment:  password qwerty
             sql: |
               INSERT INTO vacancies (name, description, category_id, salary, exp_from, exp_to, is_active, author_id, created_date, update_time)
               VALUES

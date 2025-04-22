@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: delete-and-create-table
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              DROP TABLE IF EXISTS categories CASCADE;
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: parent_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_parent_id
+                    references: categories(id)

@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: update vacancy column
+      author: kutush
+      changes:
+        - dropColumn:
+            tableName: vacancies
+            columnName: category_id
+        - addColumn:
+            tableName: vacancies
+            columns:
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_new_categoryId
+                    references: categories(id)
