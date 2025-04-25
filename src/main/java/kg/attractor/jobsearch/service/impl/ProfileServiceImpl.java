@@ -131,7 +131,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public UserDto getPublicProfileById(String email) {
-        Optional<Users> optionalUser = userRepository.findById(email);
+        Optional<Users> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isEmpty()) {
             return null;
         }
