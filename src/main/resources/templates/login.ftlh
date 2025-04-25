@@ -88,18 +88,20 @@
                 </#if>
 
                 <form action="/login" method="post">
+                    <!-- CSRF -->
+                    <#if _csrf??>
+                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                               value="${(_csrf.token)!'csrf-token'}"/>
+                    </#if>
                     <div class="mb-3">
                         <label for="username" class="form-label">Имя пользователя</label>
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
-
                     <div class="mb-3">
                         <label for="password" class="form-label">Пароль</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-
                     <button type="submit"  class="btn btn-primary w-100 mb-3" >Войти</button>
-
                     <div class="d-grid gap-2">
                         <a href="auth/register" class="btn btn-secondary">Зарегистрироваться</a>
                         <a href="/home" class="btn btn-secondary">Продолжить без входа</a>

@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: create 5 authorities
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              insert into authority(authority)
+              values
+              ('FULL'),
+              ('READ_ONLY'),
+              ('CREATE_VACANCY'),
+              ('UPDATE_VACANCY'),
+              ('DELETE_VACANCY'),
+              ('CREATE_RESUME'),
+              ('UPDATE_RESUME'),
+              ('DELETE_RESUME');

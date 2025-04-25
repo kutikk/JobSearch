@@ -33,6 +33,11 @@
             <div class="vacancy-form">
                 <h2 class="text-center mb-4">Создание вакансии</h2>
                 <form action="/vacancies/create" method="post">
+                    <!-- CSRF -->
+                    <#if _csrf??>
+                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                               value="${(_csrf.token)!'csrf-token'}"/>
+                    </#if>
                     <div class="form-section">
                         <div class="form-group mb-3">
                             <label for="vacancyTitle" class="form-label">Название вакансии</label>

@@ -33,6 +33,11 @@
                 <h2 class="text-center mb-4">Редактирование вакансии</h2>
 
                 <form action="/vacancies/update/${vacancy.id}" method="post">
+                    <!-- CSRF -->
+                    <#if _csrf??>
+                        <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                               value="${(_csrf.token)!'csrf-token'}"/>
+                    </#if>
                     <input type="hidden" name="id" value="${vacancy.id}"/>
 
                     <div class="form-section">

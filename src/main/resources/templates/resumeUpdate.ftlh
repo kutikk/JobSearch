@@ -67,6 +67,11 @@
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Создание резюме</h2>
                     <form action="/resumes/edit/${resume.id}" method="post">
+                        <!-- CSRF -->
+                        <#if _csrf??>
+                            <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                   value="${(_csrf.token)!'csrf-token'}"/>
+                        </#if>
                         <div class="mb-4">
                             <div class="form-group mb-3">
                                 <label for="resumeTitle" class="form-label">Название резюме</label>
