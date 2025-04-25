@@ -26,7 +26,7 @@ public class Users {
     private List<Resumes> resumes;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "author")
     private List<Vacancies> vacancies;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "usr_roles",
             joinColumns = @JoinColumn(name = "usr_id"),
