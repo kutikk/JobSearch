@@ -1,12 +1,16 @@
 package kg.attractor.jobsearch.config;
 
+import kg.attractor.jobsearch.service.impl.AuthUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,29 +20,15 @@ import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
-
+@EnableWebSecurity
 public class SecurityConfig {
   private final DataSource dataSource;
 
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    String fetchUserQuery = "select email, password, enabled " +
-            "from users " +
-            "where email = ?";
-    String fetchAuthorityQuery = "SELECT u.email, r.role, a.authority " +
-            "FROM users u " +
-            "JOIN usr_roles ur ON u.email = ur.usr_id " +
-            "JOIN role r ON ur.role_id = r.id " +
-            "JOIN roles_authorities ra ON r.id = ra.role_id " +
-            "JOIN authority a ON ra.authority_id = a.id " +
-            "WHERE u.email = ?";
 
-
-    auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .usersByUsernameQuery(fetchUserQuery)
-            .authoritiesByUsernameQuery(fetchAuthorityQuery);
-  }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -58,7 +48,7 @@ public class SecurityConfig {
                     .defaultSuccessUrl("/home", true)
             )
             .logout(AbstractHttpConfigurer::disable)
-            .csrf(AbstractHttpConfigurer::disable)
+            //.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/login", "/auth/register","/vacancies","/profile/*","/home" ).permitAll()
 

@@ -8,6 +8,7 @@ import kg.attractor.jobsearch.service.interfaces.VacancyService;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,15 +31,20 @@ public class homeController {
     public String getVacancies(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "2") int size,
-            Model model) throws UserNotFoundException {
+            Model model)  {
         Page<Vacancies> vacancyPage = vacancyService.getVacancies(page, size);
         model.addAttribute("vacancies", vacancyPage.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", vacancyPage.getTotalPages());
         model.addAttribute("totalItems", vacancyPage.getTotalElements());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String email = userDetails.getUsername();
         model.addAttribute("profile", profileService.getPublicProfileById(email));
+        System.out.println("EMAIL: " + email);
+        System.out.println("PROFILE: " + profileService.getPublicProfileById(email));
+
         return "home";
+
     }
 }

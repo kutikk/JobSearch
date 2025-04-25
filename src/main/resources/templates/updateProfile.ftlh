@@ -13,6 +13,11 @@
                 <div class="card-body p-4">
                     <h2 class="text-center mb-4">Редактирование профиля</h2>
                     <form action="/profile/update" method="post" enctype="multipart/form-data">
+                        <!-- CSRF -->
+                        <#if _csrf??>
+                            <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
+                                   value="${(_csrf.token)!'csrf-token'}"/>
+                        </#if>
                         <div class="mb-3">
                             <label for="name" class="form-label">Имя</label>
                             <input type="text" class="form-control" id="name" name="user_name" value="" required>

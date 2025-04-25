@@ -4,15 +4,16 @@ databaseChangeLog:
       author: kutush
       changes:
         - sql:
+            comment: "password - qwerty"
             #            dbms: any
             sql:
               INSERT INTO users (email, user_name, password, phone_number, avatar, age, account_type, enabled)
               VALUES
               ('user1@example.com', 'UserOne', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-1111', 'avatar1.png', 25, 'APPLICANT', true),
-              ('user2@example.com', 'UserTwo', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-2222', 'avatar2.png', 30, 'EMPLOYER', true),
+              ('user2@example.com', 'UserTwo', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-2222', 'avatar2.png', 30, 'APPLICANT', true),
               ('user3@example.com', 'UserThree', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-3333', 'avatar3.png', 22, 'APPLICANT', true),
               ('user4@example.com', 'UserFour', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-4444', 'avatar4.png', 28, 'EMPLOYER', true),
-              ('user5@example.com', 'UserFive', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-5555', 'avatar5.png', 35, 'APPLICANT', true);
+              ('user5@example.com', 'UserFive', '$2a$12$1wexdWsQznpxPVlQg4EEkese7lme/CJmeup4XClIVwgFHK01lt6/G', '555-5555', 'avatar5.png', 35, 'EMPLOYER', true);
 
 
 

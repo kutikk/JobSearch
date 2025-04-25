@@ -19,7 +19,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: password
-                  type: varchar(55)
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
@@ -55,17 +55,20 @@ databaseChangeLog:
             tableName: categories
             columns:
               - column:
-                  name: name
-                  type: varchar(255)
+                  name: id
+                  type: bigint
                   constraints:
                     nullable: false
                     primaryKey: true
               - column:
-                  name: parent_id
+                  name: name
                   type: varchar(255)
+              - column:
+                  name: parent_id
+                  type: bigint
                   constraints:
                     foreignKeyName: fk_parent_id
-                    references: categories(name)
+                    references: categories(id)
 
   - changeSet:
       id: create-resumes-table
@@ -108,11 +111,11 @@ databaseChangeLog:
                     references: users(email)
               - column:
                   name: category_id
-                  type: varchar(255)
+                  type: bigint
                   constraints:
                     nullable: false
                     foreignKeyName: fk_category_id
-                    references: categories(name)
+                    references: categories(id)
 
   - changeSet:
       id: create_vacancies_table
@@ -136,10 +139,10 @@ databaseChangeLog:
                   type: text
               - column:
                   name: category_id
-                  type: varchar(255)
+                  type: bigint
                   constraints:
                     foreignKeyName: fk_categories_id
-                    references: categories(name)
+                    references: categories(id)
               - column:
                   name: salary
                   type: float
@@ -241,6 +244,96 @@ databaseChangeLog:
                     foreignKeyName: fk_work_exp_resume_id
                     references: resumes(id)
                     nullable: false
+  - changeSet:
+      id: create table authority
+      author: kutush
+      changes:
+        - createTable:
+            tableName: authority
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: authority
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create role table
+      author: kutush
+      changes:
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: role
+                  type: varchar(50)
+              - column:
+                  name: authority_id
+                  type: long
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_authority_id
+                    references: authority(id)
+  - changeSet:
+      id: Create intermediate table for usr <-> roles
+      author: kutush
+      changes:
+        - createTable:
+            tableName: usr_roles
+            columns:
+              - column:
+                  name: usr_id
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    foreignKeyName: fk_usr_email_to_roles
+                    references: users(email)
+              - column:
+                  name: role_id
+                  type: long
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    foreignKeyName: fk_role_id_to_usr
+                    references: role(id)
+
+  - changeSet:
+      id: Create intermediate table for roles <-> authorities
+      author: kutush
+      changes:
+        - createTable:
+            tableName: roles_authorities
+            columns:
+              - column:
+                  name: role_id
+                  type: long
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    foreignKeyName: fk_role_id_to_auth
+                    references: role(id)
+              - column:
+                  name: authority_id
+                  type: long
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    foreignKeyName: fk_authority_id_to_roles
+                    references: authority(id)
 
 
 

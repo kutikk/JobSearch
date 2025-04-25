@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-records-roles-authorities-table
+      author: kutush
+      changes:
+        - sql:
+            sql: |
+              insert into roles_authorities(role_id, authority_id)
+              values
+                ((select id from role where role = 'ADMIN'), (select id from authority where authority = 'FULL')),
+                ((select id from role where role = 'APPLICANT'), (select id from authority where authority = 'CREATE_RESUME')),
+                ((select id from role where role = 'EMPLOYER'), (select id from authority where authority = 'CREATE_VACANCY'));
