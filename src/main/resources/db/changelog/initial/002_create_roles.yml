@@ -3,10 +3,14 @@ databaseChangeLog:
       id: create 3 roles
       author: kutush
       changes:
+        - dropColumn:
+            tableName: role
+            columnName: authority_id
         - sql:
             sql:
               insert into role(role)
               values
-               ('ADMIN'),
-               ('EMPLOYER'),
-               ('APPLICANT');
+              ('ADMIN'),
+              ('EMPLOYER'),
+              ('APPLICANT');
+
